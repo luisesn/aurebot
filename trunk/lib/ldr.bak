@@ -6,7 +6,7 @@ void ldr_configurar()
 {
    //Configuramos el ADC
    //Todas las entradas analogicas activas y rango 0-Vdd
-   setup_adc_ports( AN0_TO_AN1_ANALOG|VSS_VDD );
+   setup_adc_ports( RA0_RA1_ANALOG|VSS_VDD );
    //Reloj interno
    setup_adc(ADC_CLOCK_INTERNAL );
    printf("-ADC\r\n");
