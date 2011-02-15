@@ -1,6 +1,6 @@
 #define bumper 1
-#define BUMPER_I PIN_C1
-#define BUMPER_D PIN_C0
+#define BUMPER_I PIN_A2
+#define BUMPER_D PIN_A3
 
 void bumpers_comprobar()
 {

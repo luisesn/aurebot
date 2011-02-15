@@ -1,0 +1,113 @@
+#define sonido 1
+//PIN del altavoz
+#define altavoz PIN_C0
+
+void sdsa()
+{
+   int j=0;
+   for (j=0; j<255; j++)
+   {
+   output_low(altavoz);
+   delay_us(j);
+   delay_us(250);
+   output_high(altavoz);
+   delay_us(j);
+   delay_us(150);
+   }
+
+   for (j=255; j>0; j--)
+   {
+   output_low(altavoz);
+   delay_us(j);
+   delay_us(250);
+   output_high(altavoz);
+   delay_us(j);
+   delay_us(150);
+   }
+}
+
+void sonido_beep()
+{
+   int j=0;
+   for (j=0; j<150; j++)
+   {
+      output_high(altavoz);
+      delay_us(200);
+      output_low(altavoz);
+      delay_us(200);
+   }
+
+}
+void sonido_dolordecabeza()
+{
+   int j=0;
+   for (j=0; j<1000; j++)
+   {
+      output_high(altavoz);
+      delay_us(20);
+      output_low(altavoz);
+      delay_us(20);
+   }
+
+}
+
+void sonido_voipvoip()
+{
+   int i=0,j=0;
+   for (i=0; i<2; i++)
+   {
+
+   for (j=255; j>0; j--)
+   {
+   output_low(altavoz);
+   delay_us(j);
+   delay_us(250);
+   output_high(altavoz);
+   delay_us(j);
+   delay_us(150);
+   }
+   
+   }
+}
+
+void sonido_sirena()
+{
+   int i=0,j=0;
+   for (i=0; i<2; i++)
+   {
+
+   for (j=255; j>0; j--)
+   {
+   output_low(altavoz);
+   delay_us(j);
+   delay_us(250);
+   output_high(altavoz);
+   delay_us(j);
+   delay_us(150);
+   }
+   for (j=0; j<255; j++)
+   {
+   output_low(altavoz);
+   delay_us(j);
+   delay_us(250);
+   output_high(altavoz);
+   delay_us(j);
+   delay_us(150);
+   }
+
+   }
+}
+
+
+void sonido_laser()
+{
+   int j=0;
+   for (j=440; j<1000; j++)
+   {
+   output_low(altavoz);
+   delay_us(j);
+   output_high(altavoz);
+   delay_us(j);
+
+   }
+}
