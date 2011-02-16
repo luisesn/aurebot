@@ -14,13 +14,12 @@
 //Creamos el puerto serie (96008N1)
 #use rs232 (baud=9600,XMIT=PIN_C6,RCV=PIN_C7,BITS=8)
 
+#USE STANDARD_IO (e)
+
 
 // Configuramos los dispositivos incluidos en la placa.
 #define LED PIN_C2
 #define PULSADOR PIN_A4
-
-#define LED_I PIN_D1
-#define LED_D PIN_D0
 
 // Alias de funciones
 #define ENCENDER  output_high
@@ -120,9 +119,20 @@ void aure_configurar()
    //setup_adc(ADC_CLOCK_INTERNAL );
    //set_adc_channel(0);
    //printf("-ADC\r\n");
-
-   // Habilitamos el TIMER1
+   disable_interrupts(global);
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_OFF);
+   setup_spi(FALSE);
+   setup_psp(PSP_DISABLED);
+      // Habilitamos el TIMER1
    //enable_interrupts(INT_TIMER1);
+  setup_counters(RTCC_INTERNAL,RTCC_DIV_2);
+  setup_timer_1(T1_INTERNAL | T1_DIV_BY_1);
+  setup_timer_2(T2_DISABLED,0,1);
+  setup_timer_3(T3_DISABLED);
+  setup_comparator(NC_NC_NC_NC);
+  setup_vref(FALSE);
+  port_b_pullups(FALSE);
 
    //Habilitamos la interrupcion serie
    enable_interrupts(int_rda);   printf ("-Interrupcion SERIE\r\n");
