@@ -52,18 +52,6 @@ void ext_isr() {
   }
 }
 
-//-----------------------------------------------------------------------------
-
-void flash_porte(void){
-
-  for(i=0;i<3;i++){
-    output_e(0x07);
-    delay_ms(75);
-    output_e(0x00);
-    delay_ms(75);
-  }
-}
-
 void limpia_bits(void){
 
   for(i=0;i<total_bits;++i){
@@ -86,27 +74,27 @@ void convierte_bits_a_bytes(void){
 
 void muestra_bits(void){
 
-  printf("\r\nPULSO RECIBIDO -----------------------\r\n");
+  printf(lcd_putc, "\r\nPULSO RECIBIDO -----------------------\r\n");
 
   for(i=0;i<4;++i){
-    printf("Byte %u = ",i+1);
+    printf(lcd_putc, "Byte %u = ",i+1);
     for(k=0;k<2;++k){
       if(k==1){
         printf(" ",i+1);
       }
       for(j=0;j<8;++j){
         switch(k){
-          case 0: printf("%2u ",(i*8)+j+1);
+          case 0: printf(lcd_putc, "%2u ",(i*8)+j+1);
                   break;
-          case 1: printf("%2c ",sbits[(i*8)+j]);
+          case 1: printf(lcd_putc, "%2c ",sbits[(i*8)+j]);
                   break;
         }
       }
-      if(k==0){ printf("\r\n"); }
+      if(k==0){ printf(lcd_putc, "\r\n"); }
     }
-    printf(" Valor = %u\r\n",Bytes[i]);
+    printf(lcd_putc, " Valor = %u\r\n",Bytes[i]);
   }
-  printf("Address = %u Command = %u\r\n",Bytes[0],Bytes[2]);
+  printf(lcd_putc, "Address = %u Command = %u\r\n",Bytes[0],Bytes[2]);
 
   ntbits=0;
 }

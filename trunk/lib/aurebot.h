@@ -111,8 +111,8 @@ void aure_configurar()
 
    //Configuramos el ADC
    //Todas las entradas analogicas activas y rango 0-Vdd
-   //setup_adc_ports( ALL_ANALOG|VSS_VDD );
-   setup_adc_ports(NO_ANALOGS);
+      //setup_adc_ports( ALL_ANALOG|VSS_VDD );
+      setup_adc_ports(NO_ANALOGS);
    //setup_adc(ADC_CLOCK_INTERNAL);
 
    //Reloj interno
@@ -122,6 +122,7 @@ void aure_configurar()
    disable_interrupts(global);
    setup_adc_ports(NO_ANALOGS);
    setup_adc(ADC_OFF);
+
    setup_spi(FALSE);
    setup_psp(PSP_DISABLED);
       // Habilitamos el TIMER1

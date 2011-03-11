@@ -111,17 +111,29 @@ void aure_configurar()
 
    //Configuramos el ADC
    //Todas las entradas analogicas activas y rango 0-Vdd
-   //setup_adc_ports( ALL_ANALOG|VSS_VDD );
-   setup_adc_ports(NO_ANALOGS);
+      //setup_adc_ports( ALL_ANALOG|VSS_VDD );
+      setup_adc_ports(NO_ANALOGS);
    //setup_adc(ADC_CLOCK_INTERNAL);
 
    //Reloj interno
    //setup_adc(ADC_CLOCK_INTERNAL );
    //set_adc_channel(0);
    //printf("-ADC\r\n");
+   disable_interrupts(global);
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_CLOCK_INTERNAL);setup_adc(ADC_OFF);
 
-   // Habilitamos el TIMER1
+   setup_spi(FALSE);
+   setup_psp(PSP_DISABLED);
+      // Habilitamos el TIMER1
    //enable_interrupts(INT_TIMER1);
+  setup_counters(RTCC_INTERNAL,RTCC_DIV_2);
+  setup_timer_1(T1_INTERNAL | T1_DIV_BY_1);
+  setup_timer_2(T2_DISABLED,0,1);
+  setup_timer_3(T3_DISABLED);
+  setup_comparator(NC_NC_NC_NC);
+  setup_vref(FALSE);
+  port_b_pullups(FALSE);
 
    //Habilitamos la interrupcion serie
    enable_interrupts(int_rda);   printf ("-Interrupcion SERIE\r\n");
