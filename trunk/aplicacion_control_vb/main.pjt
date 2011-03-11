@@ -1,0 +1,57 @@
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices;C:\Program Files (x86)\PICC\Drivers;
+Library=
+LinkerScript=
+[defines]
+enabled=0
+D1=
+V1=
+[fileformats]
+forcecoff=0
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+[PROJECT]
+Target=main.hex
+Development_Mode=
+Processor=0x4550
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+[Target Data]
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+FileList=C:\Llave\Mis documentos\Dropbox\Aurebot_p\aplicacion_control_vb\main.c
+[main.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\luise\Desktop\Aurebot_p\aplicacion_prueba\main.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Opened Files]
+1=C:\Llave\Mis documentos\Dropbox\Aurebot_p\aplicacion_control_vb\main.c
+2=C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\aurebot.h
+3=
+4=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\2leds.h
+5=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\sonido.h
+6=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\bumper.h
+7=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\barra_leds.h
+8=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\flex_lcd.c
+9=
+[Units]
+Count=1
+1=main.c (main)

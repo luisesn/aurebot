@@ -1,0 +1,13 @@
+>>> Warning 203 "C:\Archivos de programa\PICC\drivers\pic18_usb.h" Line 523(1,1): Condition always TRUE
+>>> Warning 203 "C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\bumper.h" Line 10(1,1): Condition always TRUE
+>>> Warning 203 "C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\sonido.h" Line 44(1,1): Condition always TRUE
+>>> Warning 203 "C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\sonido.h" Line 105(1,1): Condition always TRUE
+>>> Warning 208 "main.c" Line 115(5,14): Function not void and does not return a value  ldr_a_lcd
+>>> Warning 208 "main.c" Line 140(5,14): Function not void and does not return a value  cny_a_lcd
+>>> Warning 203 "main.c" Line 174(1,1): Condition always TRUE
+>>> Warning 216 "main.c" Line 281(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
+>>> Warning 216 "main.c" Line 281(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
+>>> Warning 216 "main.c" Line 281(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_cdc_flush_out_buffer)
+>>> Warning 202 "C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\bootloader\usb_desc_cdc.h" Line 154(16,37): Variable never used:   USB_CLASS_DESCRIPTORS
+      Memory usage:   ROM=28%      RAM=57% - 59%
+      0 Errors,  11 Warnings.
