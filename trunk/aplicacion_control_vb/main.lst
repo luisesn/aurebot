@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
+CCS PCH C Compiler, Version 4.068, 17192               17-mar-11 10:23
 
                Filename: C:\Llave\Mis documentos\Dropbox\Aurebot_p\aplicacion_control_vb\main.lst
 
@@ -8676,7 +8676,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 3048:  BRA    304E
 304A:  MOVLW  01
 304C:  MOVWF  x84
-....................             break;  
+....................             break; 
 304E:  BRA    30DA
 ....................          case '2': 
 ....................             if (enviar_cny==1) { enviar_cny=0; } else{ enviar_cny=1;} 
@@ -8696,7 +8696,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 3064:  BRA    306A
 3066:  MOVLW  01
 3068:  MOVWF  x86
-....................             break;             
+....................             break; 
 306A:  BRA    30DA
 ....................          case '4': 
 ....................             if (enviar_analog==1) { enviar_analog=0; } else{ enviar_analog=1;} 
@@ -8706,7 +8706,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 3072:  BRA    3078
 3074:  MOVLW  01
 3076:  MOVWF  x87
-....................             break;       
+....................             break; 
 3078:  BRA    30DA
 ....................          case '5': 
 ....................             if (enviar_dig==1) { enviar_dig=0; } else{ enviar_dig=1;} 
@@ -8726,7 +8726,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 308E:  BRA    3094
 3090:  MOVLW  01
 3092:  MOVWF  x83
-....................             break;      
+....................             break; 
 3094:  BRA    30DA
 .................... //Control de movimiento 
 ....................             case 'w': 
@@ -8738,7 +8738,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 ....................                motores_patras(); 
 309A:  BRA    2F4C
 ....................                break; 
-....................             case 'd':        
+....................             case 'd': 
 ....................                motores_paderecha(); 
 309C:  BRA    2F60
 ....................                break; 
@@ -8773,7 +8773,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 ....................             //navegacion_auto(); 
 ....................             break; 
 30B2:  BRA    30DA
-....................              
+....................  
 ....................             default: 
 ....................                printf (usb_cdc_putc, "NR:%c\r\n", keypress); 
 30B4:  MOVLW  4E
@@ -9399,23 +9399,23 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 3846:  DECFSZ x87,W
 3848:  BRA    38CE
 ....................      { 
-....................      setup_adc_ports( ALL_ANALOG|VSS_VDD ); 
+....................         setup_adc_ports( ALL_ANALOG|VSS_VDD ); 
 384A:  MOVF   FC1,W
 384C:  ANDLW  C0
 384E:  MOVWF  FC1
-....................      setup_adc(ADC_CLOCK_INTERNAL); 
+....................         setup_adc(ADC_CLOCK_INTERNAL); 
 3850:  BSF    FC0.0
 3852:  BSF    FC0.1
 3854:  BSF    FC0.2
 3856:  BCF    FC0.7
 3858:  BSF    FC2.0
-....................       for (j=0; j<2; j++) 
+....................          for (j=0; j<2; j++) 
 385A:  CLRF   x8B
 385C:  MOVF   x8B,W
 385E:  SUBLW  01
 3860:  BNC   38C4
-....................       { 
-....................          printf(usb_cdc_putc, "<A%c:%c>", j+'0', leeradc(j)); 
+....................          { 
+....................             printf(usb_cdc_putc, "<A%c:%c>", j+'0', leeradc(j)); 
 3862:  MOVLW  30
 3864:  ADDWF  x8B,W
 3866:  MOVWF  x8C
@@ -9438,15 +9438,15 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 38B8:  MOVLW  3E
 38BA:  MOVWF  x90
 38BC:  CALL   2FDC
-....................       } 
+....................          } 
 38C0:  INCF   x8B,F
 38C2:  BRA    385C
-....................       setup_adc_ports(NO_ANALOGS); 
+....................          setup_adc_ports(NO_ANALOGS); 
 38C4:  MOVF   FC1,W
 38C6:  ANDLW  C0
 38C8:  IORLW  0F
 38CA:  MOVWF  FC1
-....................       setup_adc(ADC_OFF); 
+....................          setup_adc(ADC_OFF); 
 38CC:  BCF    FC2.0
 ....................      } 
 ....................      if (enviar_dig==1) 
@@ -9532,7 +9532,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 396E:  BTFSS  F80.4
 3970:  BRA    3974
 3972:  BRA    396C
-....................          lcd_gotoxy(1,1);          
+....................          lcd_gotoxy(1,1); 
 3974:  MOVLW  01
 3976:  MOVWF  xA0
 3978:  MOVWF  xA1
@@ -9548,7 +9548,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 3990:  MOVLW  11
 3992:  SUBWF  x8C,W
 3994:  BNZ   3980
-....................          printf(lcd_putc, " ldr a lcd      ");      
+....................          printf(lcd_putc, " ldr a lcd      "); 
 3996:  CLRF   x8C
 3998:  MOVF   x8C,W
 399A:  CALL   1E00
@@ -9602,7 +9602,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 39FA:  BRA    39F4
 ....................             ldr_a_lcd(); 
 39FC:  BRA    32CE
-....................          }    
+....................          } 
 ....................          lcd_gotoxy(1,1); 
 39FE:  MOVLW  01
 3A00:  MOVWF  xA0
@@ -9664,7 +9664,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 3A72:  BTFSS  F80.4
 3A74:  BRA    3A78
 3A76:  BRA    3A70
-....................                cny_a_lcd();             
+....................                cny_a_lcd(); 
 3A78:  BRA    3472
 ....................          } 
 ....................          lcd_gotoxy(1,1); 
@@ -9796,7 +9796,7 @@ CCS PCH C Compiler, Version 4.068, 17192               11-mar-11 12:50
 ....................          } 
 ....................          lcd_init(); 
 3B6E:  CALL   2E16
-....................           
+....................  
 ....................       } 
 ....................    //delay_ms(5); 
 ....................    } 

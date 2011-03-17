@@ -39,7 +39,7 @@ BuildTool=
 OptionString=
 AdditionalOptionString=
 [mru-list]
-1=C:\Users\luise\Desktop\Aurebot_p\aplicacion_prueba\main.c
+1=main.c
 [Windows]
 0=0000 %S 0 0 796 451 3 0
 [Opened Files]
@@ -54,4 +54,5 @@ AdditionalOptionString=
 9=
 [Units]
 Count=1
-1=main.c (main)
+1=main.c
+Link=0
