@@ -43,10 +43,10 @@ AdditionalOptionString=
 [Windows]
 0=0000 %S 0 0 796 451 3 0
 [Opened Files]
-1=G:\Aurebot_p\aplicacion_prueba\main.c
-2=
-3=
-4=C:\Users\luise\Desktop\Aurebot_p\lib\bootloader\usb_cdc.h
+1=C:\Llave\Mis documentos\Dropbox\Aurebot_p\aplicacion_prueba\main.c
+2=C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\aurebot.h
+3=C:\Llave\Mis documentos\Dropbox\Aurebot_p\aplicacion_control_vb\main.c
+4=C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\motores.h
 5=
 [Units]
 Count=1
