@@ -257,7 +257,7 @@ void main()
                lcd_gotoxy(1,1);
                printf (lcd_putc, "OK NAVEGACION   ");
                while(input(PULSADOR)==1) {}
-               navegacion_bumpers();
+               //navegacion_bumpers();
          }
          lcd_gotoxy(1,1);
          printf(lcd_putc, "______MENU______\r");
@@ -268,7 +268,7 @@ void main()
                lcd_gotoxy(1,1);
                printf (lcd_putc, "OK BUSCALUZ     ");
                while(input(PULSADOR)==1) {}
-               navegacion_luz();
+               //navegacion_luz();
 
          }
          lcd_init();

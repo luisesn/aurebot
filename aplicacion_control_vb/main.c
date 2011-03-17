@@ -56,22 +56,22 @@ void aure_serie()
 //Control de sensores
          case '1':
             if (enviar_ldr==1) { enviar_ldr=0; } else{ enviar_ldr=1;}
-            break; 
+            break;
          case '2':
             if (enviar_cny==1) { enviar_cny=0; } else{ enviar_cny=1;}
             break;
          case '3':
             if (enviar_pulsadores==1) { enviar_pulsadores=0; } else{ enviar_pulsadores=1;}
-            break;            
+            break;
          case '4':
             if (enviar_analog==1) { enviar_analog=0; } else{ enviar_analog=1;}
-            break;      
+            break;
          case '5':
             if (enviar_dig==1) { enviar_dig=0; } else{ enviar_dig=1;}
             break;
          case '6':
             if (prueba_pilas==1) { prueba_pilas=0; } else{ prueba_pilas=1;}
-            break;     
+            break;
 //Control de movimiento
             case 'w':
                motores_palante();
@@ -79,7 +79,7 @@ void aure_serie()
             case 's':
                motores_patras();
                break;
-            case 'd':       
+            case 'd':
                motores_paderecha();
                break;
             case 'a':
@@ -102,7 +102,7 @@ void aure_serie()
         case 'x':
             //navegacion_auto();
             break;
-            
+
             default:
                printf (usb_cdc_putc, "NR:%c\r\n", keypress);
                break;
@@ -201,14 +201,14 @@ void main()
      }
      if (enviar_analog==1)
      {
-     setup_adc_ports( ALL_ANALOG|VSS_VDD );
-     setup_adc(ADC_CLOCK_INTERNAL);
-      for (j=0; j<2; j++)
-      {
-         printf(usb_cdc_putc, "<A%c:%c>", j+'0', leeradc(j));
-      }
-      setup_adc_ports(NO_ANALOGS);
-      setup_adc(ADC_OFF);
+        setup_adc_ports( ALL_ANALOG|VSS_VDD );
+        setup_adc(ADC_CLOCK_INTERNAL);
+         for (j=0; j<2; j++)
+         {
+            printf(usb_cdc_putc, "<A%c:%c>", j+'0', leeradc(j));
+         }
+         setup_adc_ports(NO_ANALOGS);
+         setup_adc(ADC_OFF);
      }
      if (enviar_dig==1)
      {
@@ -226,9 +226,9 @@ void main()
      if (input(PULSADOR)==1)
      {
          while(input(PULSADOR)==1) {}
-         lcd_gotoxy(1,1);         
+         lcd_gotoxy(1,1);
          printf(lcd_putc, "______MENU______\r");
-         printf(lcd_putc, " ldr a lcd      ");     
+         printf(lcd_putc, " ldr a lcd      ");
          for (j=0; j<10; j++) { delay_ms(100); if (input(PULSADOR)==1) j=10;}
          if (input(PULSADOR)==1)
          {
@@ -236,7 +236,7 @@ void main()
             printf (lcd_putc, "OK LDR A LCD    ");
             while(input(PULSADOR)==1) {}
             ldr_a_lcd();
-         }   
+         }
          lcd_gotoxy(1,1);
          printf(lcd_putc, "______MENU______\r");
          printf(lcd_putc, " cny a lcd      ");
@@ -246,7 +246,7 @@ void main()
                lcd_gotoxy(1,1);
                printf (lcd_putc, "OK CNY A LCD    ");
                while(input(PULSADOR)==1) {}
-               cny_a_lcd();            
+               cny_a_lcd();
          }
          lcd_gotoxy(1,1);
          printf(lcd_putc, "______MENU______\r");
@@ -272,7 +272,7 @@ void main()
 
          }
          lcd_init();
-         
+
       }
    //delay_ms(5);
    }
