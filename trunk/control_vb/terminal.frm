@@ -1,5 +1,6 @@
 VERSION 5.00
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
+Object = "{48E59290-9880-11CF-9754-00AA00C00908}#1.0#0"; "MSINET.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form terminal 
@@ -14,10 +15,22 @@ Begin VB.Form terminal
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   MinButton       =   0   'False
    ScaleHeight     =   6630
    ScaleWidth      =   9960
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Timer actualiza 
+      Enabled         =   0   'False
+      Interval        =   2000
+      Left            =   3360
+      Top             =   5040
+   End
+   Begin InetCtlsObjects.Inet Inet1 
+      Left            =   9360
+      Top             =   5400
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      _Version        =   393216
+   End
    Begin VB.CheckBox imprimir 
       Caption         =   "Salida"
       Height          =   255
@@ -45,6 +58,7 @@ Begin VB.Form terminal
       _ExtentY        =   10821
       _Version        =   393217
       BackColor       =   16777215
+      Enabled         =   -1  'True
       HideSelection   =   0   'False
       ReadOnly        =   -1  'True
       ScrollBars      =   2
@@ -236,6 +250,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
  Option Explicit
 Dim fps As Integer
+Const IP = "colegioatalaya.com"
 
 
 
@@ -253,12 +268,49 @@ If log.Text <> "" Then If Mid$(log.Text, Len(log.Text), 1) <> vbLf And Mid$(log.
     'If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
     log.SelStart = Len(log.Text) - 1
     log.SelLength = 1
-    LockWindowUpdate (0)
+    LockWindowUpdate (0&)
 Open App.Path & "\log" & Date$ & ".txt" For Append As #2
 Write #2, Date$, Time$, Int(Timer), L
 Close #2
 End Sub
+Public Function BytesLength(abBytes() As Byte) As Long
+    ' Trap error if array is empty
+    On Error Resume Next
+    BytesLength = UBound(abBytes) - LBound(abBytes) + 1
+End Function
 
+Private Sub actualizar()
+Dim version As Variant
+Dim b() As Byte
+version = Inet1.OpenURL("http://" & IP & "/aurebot/version.txt", icString)
+If App.Revision < version Then
+    logg "Encontrada nueva version..."
+    On Error Resume Next
+    Inet1.OpenURL ("http://" & IP & "/aurebot/actualizador.exe")
+    MsgBox InStr(Inet1.GetHeader, "404 Not Found")
+    If (InStr(Inet1.GetHeader, "404 Not Found") = 0) Then
+    On Error GoTo 0
+    b = Inet1.OpenURL("http://" & IP & "/aurebot/actualizador.exe", icByteArray)
+        logg "Recibido actualizador... guardando..."
+        Open App.Path + "\actualizador.exe" For Binary Access Write As #2
+            Put #2, , b()
+        Close #2
+        logg "Listo... ejecutando..."
+        Shell App.Path + "\actualizador.exe"
+        Unload Me
+    Else
+        logg "No se pudo comprobar la actualización."
+    End If
+Else
+    logg "Tienes la última versión."
+End If
+
+End Sub
+
+Private Sub actualiza_Timer()
+actualiza.Enabled = False
+actualizar
+End Sub
 
 Private Sub cmp_Timer()
 Dim pos, t As Integer
@@ -320,13 +372,15 @@ End If
         DoEvents
 End If
 If imprimir.Value = Unchecked Then
+    If b <> "" Then
       LockWindowUpdate (log.hWnd)
       log.Text = log.Text & b
 '      If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
-On Error Resume Next
+        On Error Resume Next
       log.SelStart = Len(log.Text) - 1
       log.SelLength = 1
-      LockWindowUpdate (0)
+      LockWindowUpdate (0&)
+    End If
 End If
 End Sub
 
@@ -346,6 +400,7 @@ abrir_puerto = False
 If com.PortOpen = True Then com.PortOpen = False
 datos.FillColor = QBColor(4)
 Command11.Caption = "Conectar"
+log.SetFocus
 Else
 abrir_puerto = True
 Command11.Caption = "Desconectar"
@@ -457,6 +512,7 @@ logg "Iniciando: " & App.Title & " Versión:" & App.Major & "." & App.Minor & "."
 logg "Cargado"
 abrir_puerto = False
 logg "Inicio Ok."
+
 End Sub
 
 Private Sub Form_Terminate()
