@@ -104,10 +104,9 @@ void sonido_laser()
    int j=0;
    for (j=440; j<1000; j++)
    {
-   output_low(altavoz);
-   delay_us(j);
-   output_high(altavoz);
-   delay_us(j);
-
+      output_low(altavoz);
+      delay_us(j);
+      output_high(altavoz);
+      delay_us(j);
    }
 }
