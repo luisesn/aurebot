@@ -64,3 +64,108 @@ void motores_comprobar()
    delay_ms(2000);
    printf (usb_cdc_putc, "Motores comprobados\r\n\r\n");
 }
+
+int motores_cv_estado=0;
+int motores_cv_velocidad=0;
+int motores_cv_contador=0;
+   
+void motores_cv_off()
+{
+   // Reloj a 48 Mhz.
+   //    -> Objetivo: Interrupcion cada 10 uS (10e-6)
+   //    -> ciclo cada 48000000/4 -> 83 nS (83.333e-9)
+   //    -> 120=0x78 ciclos.
+   //Configuramos el TIMER2
+   setup_timer_2 ( T2_DISABLED, 0xff, 16);
+   disable_interrupts(int_timer2);
+   printf (usb_cdc_putc, "-TIMER2 [OFF]\r\n");
+   printf (usb_cdc_putc,"-Control de velocidad [OFF]\r\n");
+}
+
+void motores_cv_configurar()
+{
+   // Reloj a 48 Mhz.
+   //    -> Objetivo: Interrupcion cada 10 uS (10e-6)
+   //    -> ciclo cada 48000000/4 -> 83 nS (83.333e-9)
+   //    -> 120=0x78 ciclos.
+   //Configuramos el TIMER2
+   setup_timer_2 ( T2_DIV_BY_16, 0x50, 1);
+   enable_interrupts(int_timer2);
+   printf (usb_cdc_putc, "-TIMER2 [ON]\r\n");
+   printf (usb_cdc_putc,"-Control de velocidad [ON]\r\n");
+}
+
+
+#int_timer2
+void motores_cv_int()
+{
+   if (motores_cv_contador>motores_cv_velocidad) 
+   {
+      motores_parar();
+   }
+   if (motores_cv_contador>254) 
+   {
+      motores_cv_contador=0;
+      switch (motores_cv_estado) 
+      {
+         case 1:
+            motores_palante();
+            break;
+         case 2:
+            motores_patras();
+            break;
+         case 3:
+            motores_paderecha();
+            break;
+         case 4:
+            motores_paizda();
+            break;
+         case 0:
+            motores_parar();
+            break;
+      }
+   } else {
+      motores_cv_contador++;
+   }
+}
+
+void motores_cv_palante(int velocidad)
+{
+   motores_cv_velocidad=velocidad;
+   motores_cv_estado=1;
+}
+
+void motores_cv_patras(int velocidad)
+{
+   motores_cv_velocidad=velocidad;
+   motores_cv_estado=2;
+}
+
+void motores_cv_paderecha(int velocidad)
+{
+   motores_cv_velocidad=velocidad;
+   motores_cv_estado=3;
+}
+
+void motores_cv_paizda(int velocidad)
+{
+   motores_cv_velocidad=velocidad;
+   motores_cv_estado=4;
+}
+
+void motores_cv_parar()
+{
+   motores_cv_velocidad=0;
+   motores_cv_estado=0;
+}
+
+void motores_cv_cambiar_velocidad(int velocidad)
+{
+   motores_cv_velocidad=velocidad;
+}
+
+void motores_cv_sum_velocidad(int velocidad)
+{
+   if ((motores_cv_velocidad+velocidad)<255 && (motores_cv_velocidad+velocidad)>0) motores_cv_velocidad+=velocidad;
+   printf(usb_cdc_putc, "Vel: %u\r\n",  motores_cv_velocidad);
+}
