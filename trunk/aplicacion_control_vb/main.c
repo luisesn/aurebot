@@ -34,11 +34,11 @@
 */
 
 #include <../lib/aurebot.h>
-#include <../lib/motores.h>
 #include <../lib/ldr.h>
 #include <../lib/cny70.h>
 #include <../lib/bumper.h>
 #include <../lib/flex_lcd.c>
+#include <../lib/motores.h>
 #include <../lib/sonido.h>
 #include <../lib/2leds.h>
 
@@ -102,17 +102,28 @@ void aure_serie()
         case 'x':
             //navegacion_auto();
             break;
-
-            default:
-               printf (usb_cdc_putc, "NR:%c\r\n", keypress);
-               break;
+         case 'f':
+            motores_cv_sum_velocidad(-5);
+            break;
+         case 'g':
+            motores_cv_sum_velocidad(5);
+            break;
+         case 'k':
+            motores_cv_palante(200);
+            break;
+         case 'l':
+            motores_cv_parar();
+            break;
+         default:
+            printf (usb_cdc_putc, "NR:%c\r\n", keypress);
+            break;
    }
    //Vaciamos el buffer
    keypress=0;
 }
 
 
-int ldr_a_lcd()
+void ldr_a_lcd()
 {
    long lectura;
    int valor;
@@ -137,7 +148,7 @@ int ldr_a_lcd()
    }
 }
 
-int cny_a_lcd()
+void cny_a_lcd()
 {
    long lectura;
    int valor;
@@ -170,6 +181,8 @@ void main()
    aure_configurar();
    leds_configurar();
    lcd_configurar();
+   aure_configurar_usb();
+   motores_cv_configurar();
    while(1)
    {
      // Si usamos el USB
