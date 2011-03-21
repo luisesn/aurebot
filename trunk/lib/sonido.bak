@@ -29,7 +29,7 @@ void sdsa()
 void sonido_beep()
 {
    int j=0;
-   for (j=0; j<500; j++)
+   for (j=0; j<150; j++)
    {
       output_high(altavoz);
       delay_us(200);
@@ -103,11 +103,10 @@ void sonido_laser()
 {
    int j=0;
    for (j=440; j<1000; j++)
-   {
-   output_low(altavoz);
-   delay_us(j);
-   output_high(altavoz);
-   delay_us(j);
-
+      {
+      output_low(altavoz);
+      delay_us(j);
+      output_high(altavoz);
+      delay_us(j);
    }
 }
