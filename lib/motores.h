@@ -10,7 +10,6 @@ void motores_patras()
       output_bit(MDR,0);
       output_bit(MIF,1);
       output_bit(MIR,0);
-
 }
 
 void motores_palante()
@@ -71,11 +70,6 @@ int motores_cv_contador=0;
    
 void motores_cv_off()
 {
-   // Reloj a 48 Mhz.
-   //    -> Objetivo: Interrupcion cada 10 uS (10e-6)
-   //    -> ciclo cada 48000000/4 -> 83 nS (83.333e-9)
-   //    -> 120=0x78 ciclos.
-   //Configuramos el TIMER2
    setup_timer_2 ( T2_DISABLED, 0xff, 16);
    disable_interrupts(int_timer2);
    printf (usb_cdc_putc, "-TIMER2 [OFF]\r\n");
@@ -84,11 +78,6 @@ void motores_cv_off()
 
 void motores_cv_configurar()
 {
-   // Reloj a 48 Mhz.
-   //    -> Objetivo: Interrupcion cada 10 uS (10e-6)
-   //    -> ciclo cada 48000000/4 -> 83 nS (83.333e-9)
-   //    -> 120=0x78 ciclos.
-   //Configuramos el TIMER2
    setup_timer_2 ( T2_DIV_BY_16, 0x50, 1);
    enable_interrupts(int_timer2);
    printf (usb_cdc_putc, "-TIMER2 [ON]\r\n");
@@ -101,7 +90,7 @@ void motores_cv_int()
 {
    if (motores_cv_contador>motores_cv_velocidad) 
    {
-      motores_parar();
+		motores_parar();
    }
    if (motores_cv_contador>254) 
    {
@@ -125,7 +114,7 @@ void motores_cv_int()
             break;
       }
    } else {
-      motores_cv_contador++;
+		motores_cv_contador++;
    }
 }
 
