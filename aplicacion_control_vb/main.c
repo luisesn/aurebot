@@ -179,9 +179,7 @@ void main()
 {
    int i, d, j;
    aure_configurar();
-   leds_configurar();
    lcd_configurar();
-   aure_configurar_usb();
    motores_cv_configurar();
    while(1)
    {
