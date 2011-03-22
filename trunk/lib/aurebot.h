@@ -76,19 +76,19 @@ void aure_configurar()
          función aure_configurar_usb_comprobar() para saber si el dispositivo
          esta conectado (f()==1 conectado, f()==0 desconectado)
    */
-	printf("-USB CDC\r\n");
-		aure_configurar_usb_sinespera();
-	//Configuramos los registros TRIS
-	//set_tris_a(0b00000111);
-	//set_tris_b(0x00);
-	//set_tris_c(0x00);
-	//set_tris_d(0x00);
-	//set_tris_e(0x00);		
-	//printf("-Registros TRIS\r\n");
+   printf("-USB CDC\r\n");
+      aure_configurar_usb_sinespera();
+   //Configuramos los registros TRIS
+   //set_tris_a(0b00000111);
+   //set_tris_b(0x00);
+   //set_tris_c(0x00);
+   //set_tris_d(0x00);
+   //set_tris_e(0x00);      
+   //printf("-Registros TRIS\r\n");
 
-	//Configuramos las resistencias de pullup del puerto B
-	port_b_pullups(FALSE);
-	printf(usb_cdc_putc, "-Pull up's			[OFF]\r\n");
+   //Configuramos las resistencias de pullup del puerto B
+   port_b_pullups(FALSE);
+   printf(usb_cdc_putc, "-Pull up's         [OFF]\r\n");
 
    //Todos los puertos a nivel bajo
    //output_a (0x00);
@@ -108,56 +108,58 @@ void aure_configurar()
    //Reloj interno
    //setup_adc(ADC_CLOCK_INTERNAL );
    //set_adc_channel(0);
-   //printf("usb_cdc_putc, "-ADC		[ON]\r\n");
-	printf(usb_cdc_putc, "-ADC			[OFF]\r\n");
+   //printf("usb_cdc_putc, "-ADC      [ON]\r\n");
+   printf(usb_cdc_putc, "-ADC         [OFF]\r\n");
 
    disable_interrupts(global);
 
 
-	setup_spi(FALSE);
-		printf(usb_cdc_putc, "-SPI			[OFF]\r\n");
-	setup_psp(PSP_DISABLED);
-		printf(usb_cdc_putc, "-PSP			[OFF]\r\n");
+   setup_spi(FALSE);
+      printf(usb_cdc_putc, "-SPI          [OFF]\r\n");
+   setup_psp(PSP_DISABLED);
+      printf(usb_cdc_putc, "-PSP          [OFF]\r\n");
     // Habilitamos el TIMER1
-	//enable_interrupts(INT_TIMER1);
-	setup_counters(RTCC_INTERNAL,RTCC_DIV_2);
-	setup_timer_1(T1_DISABLED| T1_DIV_BY_1);
-		printf(usb_cdc_putc, "-Timer1		[OFF]\r\n");
-	setup_timer_2(T2_DISABLED,0,1);
-		printf(usb_cdc_putc, "-Timer2		[OFF]\r\n");
-	setup_timer_3(T3_DISABLED);
-		printf(usb_cdc_putc, "-Timer3 		[OFF]\r\n");
-	setup_comparator(NC_NC_NC_NC);
-		printf(usb_cdc_putc, "-Comparador	[OFF]\r\n");
-	setup_vref(FALSE);
+   //enable_interrupts(INT_TIMER1);
+   setup_timer_0(RTCC_OFF);
+      printf(usb_cdc_putc, "-Timer0       [OFF]\r\n");
+   setup_timer_1(T1_DISABLED| T1_DIV_BY_1);
+      printf(usb_cdc_putc, "-Timer1       [OFF]\r\n");
+   setup_timer_2(T2_DISABLED,0,1);
+      printf(usb_cdc_putc, "-Timer2       [OFF]\r\n");
+   setup_timer_3(T3_DISABLED);
+      printf(usb_cdc_putc, "-Timer3       [OFF]\r\n");
+   setup_comparator(NC_NC_NC_NC);
+      printf(usb_cdc_putc, "-Comparador   [OFF]\r\n");
+   setup_vref(FALSE);
 
-	//Habilitamos la interrupcion serie
-	enable_interrupts(int_rda); 
-		printf(usb_cdc_putc, "-Int SERIE	[ON]\r\n");
+   //Habilitamos la interrupcion serie
+   enable_interrupts(int_rda); 
+      printf(usb_cdc_putc, "-Int SERIE   [ON]\r\n");
 
-	// Habilitamos las interrupcione globales
-	enable_interrupts(GLOBAL);
-		printf (usb_cdc_putc, "-Int GLOB	[ON]\r\n");
+   // Habilitamos las interrupcione globales
+   enable_interrupts(GLOBAL);
+      printf (usb_cdc_putc, "-Int GLOB   [ON]\r\n");
 
 
-	printf (usb_cdc_putc, "¡Lista!\r\n\r\n");
+   printf (usb_cdc_putc, "¡Lista!\r\n\r\n");
 }
 
 
 //Interrupción y gestión serie
 int keypress=0;
+void aure_usb_serie_int();
 
 void aure_usb()
 {
-// Si usamos el USB
-usb_task();
-// Comprobamos si tenemos algún caracter en el buffer serie/usb, si lo
-// tenemos llamamos a aure_usb_serie_int() que nos lo guardará en keypress
-if (usb_cdc_kbhit())
-{
-aure_usb_serie_int();
-if (keypress!=0x00) aure_serie();
-}
+   // Si usamos el USB
+   usb_task();
+   // Comprobamos si tenemos algún caracter en el buffer serie/usb, si lo
+   // tenemos llamamos a aure_usb_serie_int() que nos lo guardará en keypress
+   if (usb_cdc_kbhit())
+   {
+      aure_usb_serie_int();
+      if (keypress!=0x00) aure_serie();
+   }
 }
 
 #int_rda

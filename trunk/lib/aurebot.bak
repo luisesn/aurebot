@@ -56,13 +56,13 @@ void aure_configurar()
 {
    int t=0;
    printf ("\r\nAUREBOT\r\n_______\r\n\r\nIniciando...\r\n");
-   printf("[Delay 300 ms]\r\n");
-   delay_ms(300);
+   printf("[Delay 50 ms]\r\n");
+   delay_ms(50);
    printf("[Ok]\r\n");
    for (t=0; t<10; t++)
    {
       output_toggle(LED);
-      delay_ms(50);
+      delay_ms(100);
    }
    printf("-Led Verde\r\n");
 
@@ -76,20 +76,19 @@ void aure_configurar()
          función aure_configurar_usb_comprobar() para saber si el dispositivo
          esta conectado (f()==1 conectado, f()==0 desconectado)
    */
-   //aure_configurar_usb();
    printf("-USB CDC\r\n");
-
+      aure_configurar_usb_sinespera();
    //Configuramos los registros TRIS
    //set_tris_a(0b00000111);
    //set_tris_b(0x00);
    //set_tris_c(0x00);
    //set_tris_d(0x00);
-   //set_tris_e(0x00);
+   //set_tris_e(0x00);      
    //printf("-Registros TRIS\r\n");
 
    //Configuramos las resistencias de pullup del puerto B
    port_b_pullups(FALSE);
-   printf("-Pull up's OFF\r\n");
+   printf(usb_cdc_putc, "-Pull up's         [OFF]\r\n");
 
    //Todos los puertos a nivel bajo
    //output_a (0x00);
@@ -99,54 +98,69 @@ void aure_configurar()
    //output_e (0x00);
    //printf("-Puertos a 0\r\n");
 
-   //Configuramos el TIMER0
-
-   //setup_timer_2( T2_DIV_BY_4, 0x4B, 1);
-   //enable_interrupts(INT_timer2);
-
-
-   //Configuramos el TIMER1
-   //setup_timer_1(RTCC_INTERNAL|RTCC_DIV_8);
-   //set_timer1(0x0000);
 
    //Configuramos el ADC
    //Todas las entradas analogicas activas y rango 0-Vdd
-      //setup_adc_ports( ALL_ANALOG|VSS_VDD );
-      setup_adc_ports(NO_ANALOGS);
-   //setup_adc(ADC_CLOCK_INTERNAL);
-
+   //setup_adc_ports( ALL_ANALOG|VSS_VDD );
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_OFF);
    //Reloj interno
    //setup_adc(ADC_CLOCK_INTERNAL );
    //set_adc_channel(0);
-   //printf("-ADC\r\n");
+   //printf("usb_cdc_putc, "-ADC      [ON]\r\n");
+   printf(usb_cdc_putc, "-ADC         [OFF]\r\n");
+
    disable_interrupts(global);
-   setup_adc_ports(NO_ANALOGS);
-   setup_adc(ADC_CLOCK_INTERNAL);setup_adc(ADC_OFF);
+
 
    setup_spi(FALSE);
+      printf(usb_cdc_putc, "-SPI         [OFF]\r\n");
    setup_psp(PSP_DISABLED);
-      // Habilitamos el TIMER1
+      printf(usb_cdc_putc, "-PSP         [OFF]\r\n");
+    // Habilitamos el TIMER1
    //enable_interrupts(INT_TIMER1);
-  setup_counters(RTCC_INTERNAL,RTCC_DIV_2);
-  setup_timer_1(T1_INTERNAL | T1_DIV_BY_1);
-  setup_timer_2(T2_DISABLED,0,1);
-  setup_timer_3(T3_DISABLED);
-  setup_comparator(NC_NC_NC_NC);
-  setup_vref(FALSE);
-  port_b_pullups(FALSE);
+   setup_timer_0(RTCC_OFF);
+      printf(usb_cdc_putc, "-Timer0       [OFF]\r\n");
+   setup_timer_1(T1_DISABLED| T1_DIV_BY_1);
+      printf(usb_cdc_putc, "-Timer1       [OFF]\r\n");
+   setup_timer_2(T2_DISABLED,0,1);
+      printf(usb_cdc_putc, "-Timer2       [OFF]\r\n");
+   setup_timer_3(T3_DISABLED);
+      printf(usb_cdc_putc, "-Timer3       [OFF]\r\n");
+   setup_comparator(NC_NC_NC_NC);
+      printf(usb_cdc_putc, "-Comparador   [OFF]\r\n");
+   setup_vref(FALSE);
 
    //Habilitamos la interrupcion serie
-   enable_interrupts(int_rda);   printf ("-Interrupcion SERIE\r\n");
+   enable_interrupts(int_rda); 
+      printf(usb_cdc_putc, "-Int SERIE   [ON]\r\n");
 
    // Habilitamos las interrupcione globales
-   enable_interrupts(GLOBAL);   printf ("-Interrupciones globales\r\n");
+   enable_interrupts(GLOBAL);
+      printf (usb_cdc_putc, "-Int GLOB   [ON]\r\n");
 
 
-   printf ("¡Lista!\r\n\r\n");
+   printf (usb_cdc_putc, "¡Lista!\r\n\r\n");
 }
+
 
 //Interrupción y gestión serie
 int keypress=0;
+void aure_usb_serie_int();
+
+void aure_usb()
+{
+   // Si usamos el USB
+   usb_task();
+   // Comprobamos si tenemos algún caracter en el buffer serie/usb, si lo
+   // tenemos llamamos a aure_usb_serie_int() que nos lo guardará en keypress
+   if (usb_cdc_kbhit())
+   {
+      aure_usb_serie_int();
+      if (keypress!=0x00) aure_serie();
+   }
+}
 
 #int_rda
 void aure_serie_int()
