@@ -1,40 +1,43 @@
 
-ROM used: 9790 (30%)
-          9794 (30%) including unused fragments
+ROM used: 11266 (34%)
+          11270 (34%) including unused fragments
 
           2 Average locations per line
           8 Average locations per statement
 
 RAM used: 1171 (57%) at main() level
-          1215 (59%) worst case
+          1223 (60%) worst case
 
-Stack used: 15 worst case (out of 24 total available)
+Stack used: 16 worst case (out of 24 total available)
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  293   230  18  main.c
-  198    68   5  ..\lib\aurebot.h
+  292   229  17  main.c
+  213    77   6  ..\lib\aurebot.h
   430     0   0  ..\..\..\..\..\Archivos de programa\PICC\Devices\18F4550.h
    75     0   0  ..\lib\bootloader\usb_bootloader.h
-  526   114   9  ..\lib\bootloader\usb_cdc.h
- 1323   321  25  ..\..\..\..\..\Archivos de programa\PICC\Drivers\pic18_usb.h
+  526   114   8  ..\lib\bootloader\usb_cdc.h
+ 1323   321  23  ..\..\..\..\..\Archivos de programa\PICC\Drivers\pic18_usb.h
   828     0   0  ..\..\..\..\..\Archivos de programa\PICC\Drivers\usb.h
   245     0   0  ..\lib\bootloader\usb_desc_cdc.h
-  912   229  18  ..\..\..\..\..\Archivos de programa\PICC\Drivers\usb.c
-   28    85   7  ..\..\..\..\..\Archivos de programa\PICC\Drivers\ctype.h
+  912   229  17  ..\..\..\..\..\Archivos de programa\PICC\Drivers\usb.c
+   28    85   6  ..\..\..\..\..\Archivos de programa\PICC\Drivers\ctype.h
    40    21   2  ..\lib\ldr.h
    17     4   0  ..\lib\cny70.h
    22    12   1  ..\lib\bumper.h
-  255    47   4  ..\lib\flex_lcd.c
-  172    75   6  ..\lib\motores.h
+  255    47   3  ..\lib\flex_lcd.c
+  161    75   5  ..\lib\motores.h
   113    62   5  ..\lib\sonido.h
    15     6   0  ..\lib\2leds.h
+   47    43   3  ..\lib\navegacion_luz.c
+   54    45   3  ..\lib\navegacion_bumpers.c
 ----- -----
- 5492  1274 Total
+ 5596  1370 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     40   0   1             @delay_ms1
+0     32   0   1             @delay_us1
 0     32   0   0             @const159
 0     32   0   0             @const161
 0     48   0   0             @const163
@@ -52,7 +55,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     84   0   3   343  5.8  usb_endpoint_stalled
 0     22   0   1    88  2.7  usb_set_address
 0    414   2  10  1575  8.9  usb_set_configured
-0    106   1   0   448  3.7  usb_isr
+0    106   0   0   448  3.7  usb_isr
 0      6   0   0    25  1.2  usb_isr_sof
 0     44   0   3   142  3.9  usb_disable_endpoints
 0     42   0   0   318  4.6  usb_isr_rst
@@ -79,7 +82,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     96   0   0   519  5.2  usb_isr_tkn_setup_StandardEndpoint
 0    120   1   1   618  7.2  usb_Get_Descriptor
 0     14   0   0    76  1.8  usb_finish_set_address
-0    132   1   5   554  8.5  usb_copy_desc_seg_to_ep
+0    134   1   5   554  8.5  usb_copy_desc_seg_to_ep
 0     92   0   0   364  5.6  usb_isr_tok_out_cdc_control_dne
 0    162   1   0   840  7.7  usb_isr_tkn_cdc
 0     18   0   0   112  2.2  usb_isr_tok_out_cdc_data_dne
@@ -89,27 +92,33 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     64   0   2   251  5.9  usb_cdc_getc
 0     66   0   5   223  4.1  usb_cdc_putc_fast
 0     34   0   1   112  1.3  usb_cdc_putc
-0     42   0   1   108  3.2  aure_configurar_usb
-0     50   0   0             @const367
-0    374   2   2   885  4.3  aure_configurar
+0     10   0   0    21  1.0  aure_configurar_usb_sinespera
+0    410   2   2  1061  4.3  aure_configurar
 0     64   0   0             @const370
-0     44   0   0             @const371
+0     42   0   0             @const371
 0     34   0   0             @const372
 0     40   0   0             @const373
 0     38   0   0             @const374
-0     44   0   0             @const375
+0     48   0   0             @const375
 0     48   0   0             @const376
-0     54   0   0             @const377
-0     38   0   0             @const378
+0     48   0   0             @const377
+0     48   0   0             @const378
+0     48   0   0             @const379
+0     48   0   0             @const380
+0     48   0   0             @const381
+0     18   0   0    90  2.3  aure_usb
 0     40   0   1   167  3.5  aure_serie_int
-0     36   0   1   167  3.5  aure_usb_serie_int
-0     40   0   3             @DIV88
-0    104   1   2             @PRINTF_U_61
+0     34   0   1   167  3.5  aure_usb_serie_int
+0     54   0   2             @ITOF
+0    346   2  14    90  2.3  @DIVFF
+0    118   1  10   167  3.5  @FLT
+0     40   0   3   404  6.1  @DIV88
+0    104   0   2             @PRINTF_U_61
  Inline        1    64  1.6  leeradc
 0     72   0   1    80  1.5  ldr_configurar
-0     34   0   0   108  1.7  @const407
-0     48   0   0   108  1.7  @const408
-0     30   0   0   445  5.8  @const427
+0     34   0   0             @const412
+0     48   0   0             @const413
+0     30   0   0   352  3.4  @const432
 0     78   0   1   326  2.8  lcd_send_nibble
 0     60   0   3   235  3.8  lcd_send_byte
 0     90   0   3   380  4.7  lcd_init
@@ -122,63 +131,63 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     18   0   0   108  1.7  motores_paderecha
 0     18   0   0   108  1.7  motores_paizda
 0     18   0   0   108  1.7  motores_parar
-0     60   0   1   110  1.6  motores_cv_configurar
-0     42   0   0   326  2.8  @const465
-0     56   0   0   326  2.8  @const466
 0     58   0   0   353  5.4  motores_cv_int
-0     36   0   0   380  4.7  @goto11562
+0     36   0   0             @goto11580
 0     12   0   1    43  1.5  motores_cv_palante
 0      8   0   0    33  1.3  motores_cv_parar
 0     64   0   3   151  3.7  motores_cv_sum_velocidad
-0     36   0   0   452  4.3  @const482
-0     96   0   1   108  1.2  leds_configurar
-0     48   0   0   322  4.7  @const498
-0     44   0   0   569  4.8  @const499
-0     42   0   0   173  2.7  @const500
-0    272   1   0  1690  6.7  aure_serie
+0     36   0   0    43  1.5  @const487
+0     36   0   1   167  3.1  sonido_beep
+0    648   3  24  1569  8.7  navegacion_luz
+0    102   0   2   322  4.7  @PRINTF_U_445
+0    328   1   2  1235  5.8  navegacion_bumpers
+0     44   0   0  1569  8.7  @const521
+0     44   0   0   943  5.7  @const522
+0     44   0   0             @const523
+0     44   0   0             @const524
+0    270   1   0  1690  6.7  aure_serie
 0    420   2  19  1070  7.3  ldr_a_lcd
-0     66   0   5  1070  7.3  @DIV1616
-0    102   1   2  1070  7.3  @PRINTF_U_440
+0     66   0   5             @DIV1616
 0    422   2  19  1070  7.3  cny_a_lcd
-0   1416   7   7  4216  8.4  MAIN
-0     42   0   0  1070  7.3  @const534
-0     42   0   0             @const535
-0     34   0   0             @const536
-0     34   0   0  4216  8.4  @const537
-0     34   0   0             @const538
-0     34   0   0             @const539
-0     34   0   0             @const540
-0     34   0   0             @const541
+0   1422   6   7  4189  8.4  MAIN
+0     42   0   0  4162  8.4  @const554
+0     42   0   0  1070  7.3  @const555
+0     34   0   0             @const556
+0     34   0   0             @const557
+0     34   0   0  4189  8.4  @const558
+0     34   0   0             @const559
+0     34   0   0             @const560
+0     34   0   0             @const561
 0     64   0   6             @WRITEBITA
 0     48   0   5             @READBITA
-0     44   0   0             @const551
-0     44   0   0             @const552
-0     44   0   0             @const553
-0     44   0   0             @const555
-0     44   0   0             @const556
-0     44   0   0             @const558
-0     44   0   0             @const559
-0     44   0   0             @const561
-0     44   0   0             @const562
+0     44   0   0             @const571
+0     44   0   0             @const572
+0     44   0   0             @const573
+0     44   0   0             @const575
+0     44   0   0             @const576
+0     44   0   0             @const578
+0     44   0   0             @const579
+0     44   0   0             @const581
+0     44   0   0             @const582
 
 Program metrics:
-    Functions               88
-    Statements              1274
-    Comments                3227
-    Volume (V)              76536
-    Difficilty (D)          355.3
-    Effort to implement (E) 27193012
-    Time to implement (T)   419 hours, 39 minutes
-    Est Delivered Bugs (B)  30
-    Cyclomatic Complexity   243
-    Maintainability (MI)    94
+    Functions               87
+    Statements              1370
+    Comments                3286
+    Volume (V)              85115
+    Difficilty (D)          365.6
+    Effort to implement (E) 31114070
+    Time to implement (T)   480 hours, 9 minutes
+    Est Delivered Bugs (B)  33
+    Cyclomatic Complexity   268
+    Maintainability (MI)    85
 
  Segment     Used  Free
 -----------  ----  ----
 00000-017FE     0  6144  
 01800-01806     4  4  
 01808-018B4   174  0  
-018B6-07FFE  9612  16830  
+018B6-07FFE  11088  15354  
 
 
 
