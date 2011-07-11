@@ -1,3 +1,5 @@
+#include <../lib/motores.h>
+#include <../lib/ldr.h>
 
 void navegacion_luz()
 {

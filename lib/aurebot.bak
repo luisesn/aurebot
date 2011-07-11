@@ -115,9 +115,9 @@ void aure_configurar()
 
 
    setup_spi(FALSE);
-      printf(usb_cdc_putc, "-SPI         [OFF]\r\n");
+      printf(usb_cdc_putc, "-SPI          [OFF]\r\n");
    setup_psp(PSP_DISABLED);
-      printf(usb_cdc_putc, "-PSP         [OFF]\r\n");
+      printf(usb_cdc_putc, "-PSP          [OFF]\r\n");
     // Habilitamos el TIMER1
    //enable_interrupts(INT_TIMER1);
    setup_timer_0(RTCC_OFF);
@@ -147,6 +147,7 @@ void aure_configurar()
 
 //Interrupción y gestión serie
 int keypress=0;
+void aure_serie();
 void aure_usb_serie_int();
 
 void aure_usb()

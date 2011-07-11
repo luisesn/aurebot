@@ -88,7 +88,7 @@ void aure_configurar()
 
    //Configuramos las resistencias de pullup del puerto B
    port_b_pullups(FALSE);
-   printf(usb_cdc_putc, "-Pull up's         [OFF]\r\n");
+  // printf(usb_cdc_putc, "-Pull up's         [OFF]\r\n");
 
    //Todos los puertos a nivel bajo
    //output_a (0x00);
@@ -109,7 +109,7 @@ void aure_configurar()
    //setup_adc(ADC_CLOCK_INTERNAL );
    //set_adc_channel(0);
    //printf("usb_cdc_putc, "-ADC      [ON]\r\n");
-   printf(usb_cdc_putc, "-ADC         [OFF]\r\n");
+   //printf(usb_cdc_putc, "-ADC         [OFF]\r\n");
 
    disable_interrupts(global);
 
@@ -134,19 +134,20 @@ void aure_configurar()
 
    //Habilitamos la interrupcion serie
    enable_interrupts(int_rda); 
-      printf(usb_cdc_putc, "-Int SERIE   [ON]\r\n");
+   //   printf(usb_cdc_putc, "-Int SERIE   [ON]\r\n");
 
    // Habilitamos las interrupcione globales
    enable_interrupts(GLOBAL);
-      printf (usb_cdc_putc, "-Int GLOB   [ON]\r\n");
+   //   printf (usb_cdc_putc, "-Int GLOB   [ON]\r\n");
 
 
-   printf (usb_cdc_putc, "¡Lista!\r\n\r\n");
+   //printf (usb_cdc_putc, "¡Lista!\r\n\r\n");
 }
 
 
 //Interrupción y gestión serie
 int keypress=0;
+void aure_serie();
 void aure_usb_serie_int();
 
 void aure_usb()
