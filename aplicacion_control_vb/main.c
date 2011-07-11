@@ -41,9 +41,10 @@
 #include <../lib/motores.h>
 #include <../lib/sonido.h>
 #include <../lib/2leds.h>
+#include <../lib/navegacion_luz.c>
+#include <../lib/navegacion_bumpers.c>
 
 int prueba_pilas=0, enviar_ldr=0, enviar_cny=0, enviar_pulsadores=0, enviar_analog=0, enviar_dig=0;
-
 
 
 
@@ -180,11 +181,11 @@ void main()
    int i, d, j;
    aure_configurar();
    lcd_configurar();
-   motores_cv_configurar();
+   //motores_cv_configurar();
    while(1)
    {
      // Si usamos el USB
-     usb_task();
+     aure_usb();
      // Comprobamos si tenemos algún caracter en el buffer serie/usb, si lo
      // tenemos llamamos a aure_usb_serie_int() que nos lo guardará en keypress
      if (usb_cdc_kbhit())
@@ -268,7 +269,7 @@ void main()
                lcd_gotoxy(1,1);
                printf (lcd_putc, "OK NAVEGACION   ");
                while(input(PULSADOR)==1) {}
-               //navegacion_bumpers();
+               navegacion_bumpers();
          }
          lcd_gotoxy(1,1);
          printf(lcd_putc, "______MENU______\r");
@@ -279,7 +280,7 @@ void main()
                lcd_gotoxy(1,1);
                printf (lcd_putc, "OK BUSCALUZ     ");
                while(input(PULSADOR)==1) {}
-               //navegacion_luz();
+               navegacion_luz();
 
          }
          lcd_init();
