@@ -62,18 +62,13 @@ void servos_inttimer()
 
 void servos_mover_a(int grados, int servo)
 {
-   int posicion;
-   //if (grados>180) grados=180;
-   posicion=grados;
-   printf ("%i\r\n",posicion);
-   //servos_configurar();
    switch (servo)
    {
       case 1:
-         servos_p[0]=posicion;
+         servos_p[0]=grados;
          break;
       case 2:
-         servos_p[1]=posicion;
+         servos_p[1]=grados;
          break;
    }
    //int_servo=0;
@@ -108,7 +103,7 @@ void servos_control_auto()
    int espera=0;
    int grados;
    int direccion=10;
-   while(1)
+   while(true)
    {
       if (espera>10)
       {

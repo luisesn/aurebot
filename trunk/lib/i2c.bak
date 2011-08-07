@@ -31,7 +31,7 @@
 //       needs to be replicated for each of the i2c bus definitions,
 //       with an appropriate use_i2c() directive preceeding it.
 
-
+#use I2C(master, sda=PIN_B0, scl=PIN_B1, fast)
 #define I2CWRITE     0b00000000
 #define I2CREAD      0b00000001
 

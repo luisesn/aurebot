@@ -8,13 +8,13 @@ void relojc4_display(byte d, byte num)
       i2c_write(d);  //enviamos display
       i2c_stop();    //finalizacion de la comunicacion
 
-
+      delay_ms(1);
       i2c_start();      //condicion de inicio
       i2c_write(0xb0);  //direccion del esclavo con el que haremos la comunicacion
       //if (num<0 || num>9) num=0;
       i2c_write(num+'0');  //enviamos display
       i2c_stop();    //finalizacion de la comunicacion
-
+      delay_ms(1);
 }
 
 void relojc4_enviar_comando(byte d)

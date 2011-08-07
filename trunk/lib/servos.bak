@@ -34,7 +34,8 @@ void servos_configurar()
    //Configuramos el TIMER2
 
    servos_contador=0;
-   setup_timer_2(T2_DIV_BY_1,0x78,1);
+   //setup_timer_2(T2_DIV_BY_1,0x78,1);
+   setup_timer_2(T2_DIV_BY_1,60,1);
    enable_interrupts(int_timer2);
    printf ("-TIMER2 Configurado\r\n");
    printf ("-Servos configurados\r\n");
@@ -49,9 +50,9 @@ void servos_inttimer()
    //Servos Futaba 3003
    // Pulso minimo 0.3 mS
    // Pulso maximo 2.1 mS
-   if (servos_contador>servos_p[0]+45) output_low(servos_A);
-   if (servos_contador>servos_p[1]+45) output_low(servos_B);
-   if (servos_contador>1998)
+   if (servos_contador>servos_p[0]*2+45) output_low(servos_A);
+   if (servos_contador>servos_p[1]*2+45) output_low(servos_B);
+   if (servos_contador>3996)
    {
       output_high(servos_A);
       output_high(servos_B);
@@ -62,18 +63,13 @@ void servos_inttimer()
 
 void servos_mover_a(int grados, int servo)
 {
-   int posicion;
-   //if (grados>180) grados=180;
-   posicion=grados;
-   printf ("%i\r\n",posicion);
-   //servos_configurar();
    switch (servo)
    {
       case 1:
-         servos_p[0]=posicion;
+         servos_p[0]=grados;
          break;
       case 2:
-         servos_p[1]=posicion;
+         servos_p[1]=grados;
          break;
    }
    //int_servo=0;
@@ -108,7 +104,7 @@ void servos_control_auto()
    int espera=0;
    int grados;
    int direccion=10;
-   while(1)
+   while(true)
    {
       if (espera>10)
       {
@@ -144,7 +140,7 @@ void servos_comprobar()
          servos_mover_a(180-j, 2);
          printf ("Servos a %u y %u respectivamente.\r\n", j, 180-j);
          delay_ms(100);
-         if (usb_cdc_putc_kbhit()) break;
+         if (usb_cdc_kbhit()) break;
       }
 
    }
