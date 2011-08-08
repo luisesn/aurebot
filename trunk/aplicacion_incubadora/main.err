@@ -1,0 +1,12 @@
+>>> Warning 203 "C:\ARCHIV~1\PICC\drivers\pic18_usb.h" Line 523(1,1): Condition always TRUE
+>>> Warning 203 "C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\i2c.h" Line 83(1,1): Condition always TRUE
+>>> Warning 203 "C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\sonido.h" Line 44(1,1): Condition always TRUE
+>>> Warning 203 "C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\sonido.h" Line 100(1,1): Condition always TRUE
+>>> Warning 203 "main.c" Line 314(1,1): Condition always TRUE
+>>> Warning 216 "main.c" Line 371(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
+>>> Warning 216 "main.c" Line 371(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
+>>> Warning 216 "main.c" Line 371(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_cdc_flush_out_buffer)
+>>> Warning 202 "C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\bootloader\usb_desc_cdc.h" Line 154(16,37): Variable never used:   USB_CLASS_DESCRIPTORS
+>>> Warning 202 "C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\aurebot.h" Line 58(8,9): Variable never used:   t
+      Memory usage:   ROM=43%      RAM=60% - 62%
+      0 Errors,  10 Warnings.

@@ -1,0 +1,199 @@
+
+ROM used: 13980 (43%)
+          13984 (43%) including unused fragments
+
+          2 Average locations per line
+          11 Average locations per statement
+
+RAM used: 1221 (60%) at main() level
+          1276 (62%) worst case
+
+Stack used: 15 worst case (out of 24 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  370   192  15  main.c
+  208    62   5  ..\lib\aurebot.h
+  429     0   0  ..\..\..\..\..\..\ARCHIV~1\PICC\devices\18F4550.h
+   75     0   0  ..\lib\bootloader\usb_bootloader.h
+  526   114   9  ..\lib\bootloader\usb_cdc.h
+ 1323   321  24  ..\..\..\..\..\..\ARCHIV~1\PICC\drivers\pic18_usb.h
+  828     0   0  ..\..\..\..\..\..\ARCHIV~1\PICC\drivers\usb.h
+  245     0   0  ..\lib\bootloader\usb_desc_cdc.h
+  912   229  17  ..\..\..\..\..\..\ARCHIV~1\PICC\drivers\usb.c
+   28    85   6  ..\..\..\..\..\..\ARCHIV~1\PICC\drivers\ctype.h
+  117    25   2  ..\lib\i2c.h
+   74    47   4  ..\lib\ds1307.h
+  112    48   4  ..\lib\ds1624.h
+   28    14   1  ..\lib\reloj_c4.h
+  108    60   5  ..\lib\sonido.h
+   62    22   2  ..\lib\1-wire.h
+   58    20   2  ..\lib\ds18b20.h
+   27    14   1  ..\aplicacion_incubadora\incubadora.h
+  148    66   5  ..\lib\servos.h
+----- -----
+ 5678  1319 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   0   1             @delay_ms1
+0     32   0   1             @delay_us1
+0     32   0   0             @const159
+0     32   0   0             @const161
+0     48   0   0             @const163
+0     66   0   0             @const165
+0     40   0   1   149  2.6  usb_detach
+0     34   0   0   138  2.1  usb_attach
+0     36   0   1   346  4.6  usb_task
+0     14   0   0    61  2.5  usb_init
+0    222   1   7  1224  5.9  usb_flush_in
+0    166   1  14   584  7.5  usb_put_packet
+0    230   1   7   940  5.4  usb_flush_out
+0     40   0   1    52  2.1  usb_rx_packet_size
+0     68   0   4   235  4.5  usb_stall_ep
+0     66   0   4   242  4.6  usb_unstall_ep
+0     84   0   3   343  5.8  usb_endpoint_stalled
+0     22   0   1    88  2.7  usb_set_address
+0    414   1  10  1575  8.9  usb_set_configured
+0    106   0   0   448  3.7  usb_isr
+0      6   0   0    25  1.2  usb_isr_sof
+0     44   0   3   142  3.9  usb_disable_endpoints
+0     42   0   0   318  4.6  usb_isr_rst
+0     30   0   0   343  3.1  usb_init_ep0_setup
+0      8   0   0    47  1.5  usb_isr_uerr
+0     10   0   0    54  1.5  usb_isr_uidle
+0     10   0   0    54  1.5  usb_isr_activity
+0     14   0   0   147  3.4  usb_isr_stall
+0    202   1   2  1217  7.3  usb_isr_tok_dne
+0      6   0   1    25  1.6  usb_request_send_response
+0      6   0   0    22  1.2  usb_request_get_data
+0      6   0   0    25  0.8  usb_request_stall
+0     84   0   0             @const286
+0     18   0   0             @const288
+0     34   0   0             @const294
+0     70   0   0             @const297
+0     40   0   3   239  4.0  usb_token_reset
+0     82   0   4   201  4.9  usb_endpoint_is_valid
+0     34   0   1   204  3.1  usb_isr_tok_in_dne
+0     50   0   1   152  3.0  usb_isr_tok_out_dne
+0     42   0   0   310  5.4  usb_isr_tok_setup_dne
+0    162   1   0  1131  8.2  usb_isr_tkn_setup_StandardDevice
+0    152   1   3   691  7.7  usb_isr_tkn_setup_StandardInterface
+0     96   0   0   519  5.2  usb_isr_tkn_setup_StandardEndpoint
+0    118   0   1   618  7.2  usb_Get_Descriptor
+0     14   0   0    76  1.8  usb_finish_set_address
+0    132   0   5   554  8.5  usb_copy_desc_seg_to_ep
+0     92   0   0   364  5.6  usb_isr_tok_out_cdc_control_dne
+0    162   1   0   840  7.7  usb_isr_tkn_cdc
+0     18   0   0   112  2.2  usb_isr_tok_out_cdc_data_dne
+0     14   0   0    59  2.1  usb_isr_tok_in_cdc_data_dne
+0     32   0   0   106  2.5  usb_cdc_flush_out_buffer
+0     36   0   0   280  2.3  usb_cdc_init
+0     64   0   2   251  5.9  usb_cdc_getc
+0     66   0   5   223  4.1  usb_cdc_putc_fast
+0     34   0   1   112  1.3  usb_cdc_putc
+0     10   0   0    21  1.0  aure_configurar_usb_sinespera
+0    224   1   2   558  2.8  aure_configurar
+0     64   0   0             @const370
+0     42   0   0             @const371
+0     34   0   0             @const372
+0     38   0   0             @const373
+0     40   0   0             @const374
+0     18   0   0    76  2.3  aure_usb
+0     40   0   1   167  3.5  aure_serie_int
+0     32   0   1   145  3.5  aure_usb_serie_int
+0     56   0   2             @ITOF
+0    348   1  14             @DIVFF
+0    120   0  10             @FLT
+0     40   0   3             @DIV88
+0    108   0   2             @PRINTF_U_61
+0    102   0   3             @I2C_READ_1
+0    108   0   1             @I2C_WRITE_1
+0     16   0   2    48  2.1  i2c_addr_mask
+0     36   0   3   240  6.0  bin2bcd
+0     38   0   3   155  4.7  bcd2bin
+0    246   1   2   326  2.3  ds1307_init
+0    226   1   8   503  2.7  ds1307_set_date_time
+ Inline        6   383  3.1  ds1307_get_date
+ Inline        5   328  2.5  ds1307_get_time
+0    192   1   4   288  2.4  ds1624_init
+0    208   1   6   474  6.5  ds1624_read_temp_c
+0    190   1   3   214  2.4  relojc4_display
+0     86   0   1    70  1.0  relojc4_enviar_comando
+0     64   0   2   322  4.7  sonido_voipvoip
+0     38   0   1    86  1.3  onewire_reset
+0     64   0   2   272  4.3  onewire_write
+0     64   0   2   281  4.4  onewire_read
+0    150   1  13   452  4.3  ds1820_read
+0     74   0   2             @SITOF
+0     24   0   1   167  3.1  incubadora_ventilador
+0     24   0   1   175  2.5  incubadora_calefaccion
+0     72   0   1   112  2.0  servos_configurar
+0     48   0   0             @const513
+0     50   0   0             @const514
+0     78   0   0   262  4.1  servos_inttimer
+0     26   0   2   151  4.6  servos_mover_a
+0   1572   6   5  5010  9.4  aure_serie
+0     46   0   0             @const559
+0     40   0   0  4691  9.4  @const560
+0     42   0   0             @const561
+0    242   1  11             @MULFF
+0     62   0   5             @FTOSD
+0    122   0  13             @DIV3232
+0    384   1  13             @PRINTF_L32D_61FPFPF
+0     34   0   0             @const573
+0     34   0   0             @const574
+0     34   0   0             @const575
+0     34   0   0             @const576
+0     76   0   0             @const577
+0    208   1   6             @PRINTF_D_61
+0     54   0   0             @const582
+0     42   0   0             @const583
+0     58   0   0             @const585
+0     48   0   0             @const586
+0     50   0   0             @const587
+0     46   0   0    61  1.4  @const588
+0     50   0   0   233  2.3  @const590
+0     46   0   0   397  4.6  @const591
+0     54   0   0             @const593
+0     50   0   0             @const594
+0     40   0   0             @const595
+0     48   0   0   297  3.1  @const596
+0     34   0   0             @const601
+0     54   0   0             @const602
+0     36   0   1    61  1.4  configurar_timer0_1seg
+0     48   0   0   867  4.7  @const604
+0    288   1   3   525  4.8  escribir_temperatura
+0     56   0   4   233  2.3  @SFTOI
+0     36   0   0   297  3.1  @const611
+0     28   0   1   597  4.2  @SPRINTF
+0    106   0   2   297  3.1  @PRINTF_U_614
+0    314   1   5   424  3.7  escribir_temperatura_2
+0    618   2  16   297  3.1  @ADDFF
+0     36   0   0             @const624
+0    392   1  13   430  4.2  @PRINTF_L32D_614FPFPF
+0    118   0   6   430  4.2  escribir_hora
+0     10   0   0    18  1.0  seg_int
+0    840   3   4  1345  6.8  MAIN
+
+Program metrics:
+    Functions               91
+    Statements              1319
+    Comments                3486
+    Volume (V)              76646
+    Difficilty (D)          354.1
+    Effort to implement (E) 27139465
+    Time to implement (T)   418 hours, 49 minutes
+    Est Delivered Bugs (B)  30
+    Cyclomatic Complexity   208
+    Maintainability (MI)    84
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-017FE     0  6144  
+01800-01806     4  4  
+01808-018C0   186  0  
+018C2-07FFE  13790  12640  
+
+
+
