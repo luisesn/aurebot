@@ -1,0 +1,61 @@
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices;C:\Program Files (x86)\PICC\Drivers;
+Library=
+LinkerScript=
+[defines]
+enabled=0
+D1=
+V1=
+[fileformats]
+forcecoff=0
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+[PROJECT]
+Target=main.hex
+Development_Mode=
+Processor=0x4550
+Processor_Text=PIC18F4550
+ToolSuite=CCS
+[Target Data]
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+FileList=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\aplicacion_reloj\main.c
+[main.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\luise\Desktop\Aurebot_p\aplicacion_reloj\main.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Opened Files]
+1=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\aplicacion_reloj\main.c
+2=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\reloj_c4.h
+3=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\i2c.h
+4=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\aurebot.h
+5=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\ds18b20.h
+6=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\sonido.h
+7=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\aplicacion_bootloader\bootloader.c
+8=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\1-wire.h
+9=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\servos.h
+10=
+11=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\bootloader\usb_cdc.h
+12=C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Aurebot_p\lib\servos.h
+13=
+[Units]
+Count=1
+1=main.c (main)
