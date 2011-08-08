@@ -1,0 +1,127 @@
+
+ROM used: 5756 (18%)
+          5760 (18%) including unused fragments
+
+          1 Average locations per line
+          6 Average locations per statement
+
+RAM used: 1182 (58%) at main() level
+          1229 (60%) worst case
+
+Stack used: 14 worst case (out of 24 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   57    22   2  main.c
+  218    72   8  ..\lib\aurebot.h
+  429     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h
+   75     0   0  ..\lib\bootloader\usb_bootloader.h
+  526   114  13  ..\lib\bootloader\usb_cdc.h
+ 1323   321  36  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\pic18_usb.h
+  828     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\usb.h
+  245     0   0  ..\lib\bootloader\usb_desc_cdc.h
+  912   229  25  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\usb.c
+   28    85   9  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
+  117    25   3  ..\lib\i2c.h
+   61    34   4  ..\lib\wiimotionplus.h
+----- -----
+ 4819   902 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   0   1             @delay_ms1
+0     32   0   0             @const159
+0     32   0   0             @const161
+0     48   0   0             @const163
+0     66   1   0             @const165
+0     40   0   1   149  2.6  usb_detach
+0     34   0   0   138  2.1  usb_attach
+0     36   0   1   346  4.6  usb_task
+0     14   0   0    61  2.5  usb_init
+0    222   2   7  1224  5.9  usb_flush_in
+0    166   1  14   584  7.5  usb_put_packet
+0    230   2   7   940  5.4  usb_flush_out
+0     40   0   1    52  2.1  usb_rx_packet_size
+0     68   1   4   235  4.5  usb_stall_ep
+0     66   1   4   242  4.6  usb_unstall_ep
+0     84   1   3   343  5.8  usb_endpoint_stalled
+0     22   0   1    88  2.7  usb_set_address
+0    402   3  10  1575  8.9  usb_set_configured
+0    106   1   0   448  3.7  usb_isr
+0      6   0   0    25  1.2  usb_isr_sof
+0     44   0   3   142  3.9  usb_disable_endpoints
+0     42   0   0   318  4.6  usb_isr_rst
+0     30   0   0   343  3.1  usb_init_ep0_setup
+0      8   0   0    47  1.5  usb_isr_uerr
+0     10   0   0    54  1.5  usb_isr_uidle
+0     10   0   0    54  1.5  usb_isr_activity
+0     14   0   0   147  3.4  usb_isr_stall
+0    202   2   2  1217  7.3  usb_isr_tok_dne
+0      6   0   1    25  1.6  usb_request_send_response
+0      6   0   0    22  1.2  usb_request_get_data
+0      6   0   0    25  0.8  usb_request_stall
+0     84   1   0             @const286
+0     18   0   0             @const288
+0     34   0   0             @const294
+0     70   1   0             @const297
+0     40   0   3   239  4.0  usb_token_reset
+0     78   1   4   201  4.9  usb_endpoint_is_valid
+0     34   0   1   204  3.1  usb_isr_tok_in_dne
+0     50   0   1   152  3.0  usb_isr_tok_out_dne
+0     42   0   0   310  5.4  usb_isr_tok_setup_dne
+0    162   1   0  1131  8.2  usb_isr_tkn_setup_StandardDevice
+0    150   1   3   691  7.7  usb_isr_tkn_setup_StandardInterface
+0     96   1   0   519  5.2  usb_isr_tkn_setup_StandardEndpoint
+0    118   1   1   618  7.2  usb_Get_Descriptor
+0     14   0   0    76  1.8  usb_finish_set_address
+0    132   1   5   554  8.5  usb_copy_desc_seg_to_ep
+0     92   1   0   364  5.6  usb_isr_tok_out_cdc_control_dne
+0    162   1   0   840  7.7  usb_isr_tkn_cdc
+0     18   0   0   112  2.2  usb_isr_tok_out_cdc_data_dne
+0     14   0   0    59  2.1  usb_isr_tok_in_cdc_data_dne
+0     32   0   0   106  2.5  usb_cdc_flush_out_buffer
+0     36   0   0   280  2.3  usb_cdc_init
+0     64   1   2   251  5.9  usb_cdc_getc
+0     66   1   5   223  4.1  usb_cdc_putc_fast
+0     34   0   1   112  1.3  usb_cdc_putc
+0     64   1   1   163  2.5  aure_configurar_usb
+0     50   0   0             @const367
+0    260   2   2   742  4.3  aure_configurar
+0     64   1   0             @const370
+0     42   0   0             @const371
+0     34   0   0             @const372
+0     38   0   0             @const373
+0     40   0   0             @const374
+0     16   0   0    76  2.3  aure_usb
+0     40   0   1   167  3.5  aure_serie_int
+0     36   0   1   167  3.5  aure_usb_serie_int
+0    102   1   3             @I2C_READ_1
+0    108   1   1             @I2C_WRITE_1
+0     90   1   0    74  1.2  wiimp_configurar
+0     82   1   0    55  1.1  wiimp_pedir_datos
+0     52   0   0   114  3.4  aure_serie
+0    422   4  10   826  6.8  MAIN
+0     44   0   0   114  3.4  @const446
+0    234   2   9             @PRINTF_LD_61
+
+Program metrics:
+    Functions               56
+    Statements              902
+    Comments                2639
+    Volume (V)              36102
+    Difficilty (D)          223.5
+    Effort to implement (E) 8067747
+    Time to implement (T)   124 hours, 30 minutes
+    Est Delivered Bugs (B)  13
+    Cyclomatic Complexity   129
+    Maintainability (MI)    45
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-017FE     0  6144  
+01800-01806     4  4  
+01808-018A8   162  0  
+018AA-07FFE  5590  20864  
+
+
+
