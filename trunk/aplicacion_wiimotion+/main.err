@@ -1,0 +1,14 @@
+>>> Warning 203 "C:\Program Files (x86)\PICC\Drivers\pic18_usb.h" Line 523(1,1): Condition always TRUE
+>>> Warning 203 "C:\Users\luise\Documents\My Dropbox\Aurebot_p\lib\i2c.h" Line 83(1,1): Condition always TRUE
+>>> Warning 203 "main.c" Line 30(1,1): Condition always TRUE
+>>> Warning 216 "main.c" Line 58(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
+>>> Warning 216 "main.c" Line 58(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_cdc_flush_out_buffer)
+>>> Warning 216 "main.c" Line 58(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
+>>> Warning 202 "C:\Users\luise\Documents\My Dropbox\Aurebot_p\lib\bootloader\usb_desc_cdc.h" Line 154(16,37): Variable never used:   USB_CLASS_DESCRIPTORS
+>>> Warning 202 "main.c" Line 4(5,15): Variable never used:   enviar_ldr
+>>> Warning 202 "main.c" Line 4(19,29): Variable never used:   enviar_cny
+>>> Warning 202 "main.c" Line 4(33,50): Variable never used:   enviar_pulsadores
+>>> Warning 202 "main.c" Line 4(54,67): Variable never used:   enviar_analog
+>>> Warning 202 "main.c" Line 4(71,81): Variable never used:   enviar_dig
+      Memory usage:   ROM=18%      RAM=58% - 60%
+      0 Errors,  12 Warnings.
