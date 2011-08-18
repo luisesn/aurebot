@@ -11,6 +11,7 @@
 int servos_p[servos_numero]={90,90};
 int16 servos_contador=0;
 int int_servo=0;
+int servos_flag=0;
 
 void servos_off()
 {
@@ -32,7 +33,6 @@ void servos_configurar()
    //    -> ciclo cada 48000000/4 -> 83 nS (83.333e-9)
    //    -> 120=0x78 ciclos.
    //Configuramos el TIMER2
-
    servos_contador=0;
    setup_timer_2(T2_DIV_BY_1,0x78,1);
    enable_interrupts(int_timer2);
@@ -44,7 +44,13 @@ void servos_configurar()
 #int_timer2
 void servos_inttimer()
 {
+	servos_flag=1;
+}
 
+
+// Hay que llamar a esta funcion en el bucle while
+#inline
+void servos_timer() {
    servos_contador++;
    //Servos Futaba 3003
    // Pulso minimo 0.3 mS
