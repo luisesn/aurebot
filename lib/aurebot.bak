@@ -73,7 +73,7 @@ void aure_configurar()
          esta conectado (f()==1 conectado, f()==0 desconectado)
    */
    printf("-USB CDC\r\n");
-      //aure_configurar_usb();
+      aure_configurar_usb_sinespera();
       //delay_ms(500);
    printf("-Led Verde\r\n");
    //Configuramos los registros TRIS

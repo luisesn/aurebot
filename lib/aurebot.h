@@ -72,8 +72,10 @@ void aure_configurar()
          función aure_configurar_usb_comprobar() para saber si el dispositivo
          esta conectado (f()==1 conectado, f()==0 desconectado)
    */
-   printf("-USB CDC\r\n");
+   #ifdef AUREUSB
+		printf("-USB CDC\r\n");
       aure_configurar_usb_sinespera();
+   #endif
       //delay_ms(500);
    printf("-Led Verde\r\n");
    //Configuramos los registros TRIS
