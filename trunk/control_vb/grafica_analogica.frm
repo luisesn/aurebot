@@ -131,10 +131,10 @@ Begin VB.Form pnl_grafico
       _Version        =   393216
       LargeChange     =   10000
       Min             =   1
-      Max             =   60000
-      SelStart        =   5000
+      Max             =   600000
+      SelStart        =   60000
       TickFrequency   =   1000
-      Value           =   5000
+      Value           =   60000
    End
    Begin VB.CheckBox autoreset 
       Caption         =   "Auto-reset"
@@ -406,6 +406,9 @@ End Sub
 Private Sub Form_Load()
 colores(0) = RGB(255, 255, 255)
 colores(1) = RGB(255, 0, 0)
+colores(2) = RGB(0, 255, 0)
+colores(3) = RGB(0, 0, 255)
+colores(4) = RGB(255, 255, 0)
 inicializar
 limpiar
 End Sub
