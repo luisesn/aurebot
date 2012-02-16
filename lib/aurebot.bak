@@ -26,6 +26,8 @@
 #define APAGAR    output_low
 #define CONMUTAR  output_toggle
 
+#define AUREUSB 1
+
 // Para configurar el usb si esperar al host
 void aure_configurar_usb_sinespera()
 {
@@ -72,8 +74,10 @@ void aure_configurar()
          función aure_configurar_usb_comprobar() para saber si el dispositivo
          esta conectado (f()==1 conectado, f()==0 desconectado)
    */
-   printf("-USB CDC\r\n");
-      aure_configurar_usb_sinespera();
+   #ifdef AUREUSB
+      printf("-USB CDC\r\n");
+      aure_configurar_usb();
+   #endif
       //delay_ms(500);
    printf("-Led Verde\r\n");
    //Configuramos los registros TRIS
