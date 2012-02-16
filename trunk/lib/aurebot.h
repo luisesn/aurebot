@@ -26,6 +26,8 @@
 #define APAGAR    output_low
 #define CONMUTAR  output_toggle
 
+#define AUREUSB 1
+
 // Para configurar el usb si esperar al host
 void aure_configurar_usb_sinespera()
 {
@@ -47,6 +49,8 @@ void aure_configurar_usb()
    usb_cdc_init();
    usb_init();
    while(!usb_cdc_connected()) {
+      delay_ms(250);
+      conmutar(led);
    }
    printf(usb_cdc_putc, "\r\n\n-AureBoard ¡Lista!\r\n");
 }
@@ -73,8 +77,8 @@ void aure_configurar()
          esta conectado (f()==1 conectado, f()==0 desconectado)
    */
    #ifdef AUREUSB
-		printf("-USB CDC\r\n");
-      aure_configurar_usb_sinespera();
+      printf("-USB CDC\r\n");
+      aure_configurar_usb();
    #endif
       //delay_ms(500);
    printf("-Led Verde\r\n");
