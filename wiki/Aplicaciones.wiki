@@ -1,3 +1,4 @@
 #summary Aplicaciones de ejemplo del AureBot
 
 = Incubadora =
+*[http://code.google.com/p/aurebot/source/browse/trunk/#trunk%2Faplicacion_incubadora Código]*
