@@ -1,0 +1,3 @@
+#summary Descripción del hardware del AureBot
+
+= Microcontrolador =
