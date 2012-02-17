@@ -1,5 +1,5 @@
 #summary Descripción del sofware del AureBot
-
+= Introducción =
 El Aurebot se programa en C (específicamente C para pics de CCS), para facilitar la programación del robot se usan librerías que abstraen las funciones especificas del Pic a funciones fácilmente legibles para humanos, por ejemplo mover los motores hacia delante en C deberíamos usar:
 {{{
 output_bit(PIN_D6,0);
@@ -15,7 +15,7 @@ motores_palante();
 }}}
 
 = Librerias =
- * Funciones principales del AureBot
+ * *[http://code.google.com/p/aurebot/source/browse/trunk/lib/aurebot.h lib/aurebot.h]*: Contiene las funciones esenciales del AureBot, desde las rutinas de inicialización a la configuración del puerto USB y del reloj del microcontrolador
 
 
 = Código =
