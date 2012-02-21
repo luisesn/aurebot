@@ -1,9 +1,5 @@
 // flex_lcd.c
 
-// These pins are for the Microchip PicDem2-Plus board,
-// which is what I used to test the driver.  Change these
-// pins to fit your own board.
-
 //#define LCD_DB4   PIN_B4
 //#define LCD_DB5   PIN_B5
 //#define LCD_DB6   PIN_B6
