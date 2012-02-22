@@ -550,7 +550,7 @@ Private Sub Form_Load()
     version = App.Major & "." & App.Minor & "." & App.Revision
     logg App.Title & " versión: " & version
     logg "Cargando configuración..."
-    If Dir(App.Path + "\actualizador.ini", vbHidden) <> "" Then
+    If Dir(configuracion, vbHidden) <> "" Then
         velocidad.Text = INIRead("SERIE", "velocidad", configuracion)
         puerto.Text = INIRead("SERIE", "puerto", configuracion)
     Else
@@ -631,7 +631,7 @@ If descargando Then
         
         If filesize > 10 Then
             logg "Ejecutando actualizador...", 5
-        'Shell App.Path + "\actualizador.exe"
+            Shell App.Path + "\actualizador.exe"
         '    Unload Me
         'Else
         '    logg "No se pudo comprobar la actualización.", 4
@@ -704,7 +704,7 @@ End If
 End Sub
 
 Private Sub velocidad_Change()
-If INIWrite("SERIE", "velocidad", puerto.Text, configuracion) Then
+If INIWrite("SERIE", "velocidad", velocidad.Text, configuracion) Then
     logg "Cambiado parámetro de velocidad"
 Else
     logg "Ocurrió un error al guardar el parámetro", 4
