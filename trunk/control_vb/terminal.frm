@@ -20,7 +20,7 @@ Begin VB.Form terminal
    StartUpPosition =   2  'CenterScreen
    Begin VB.Timer actualiza 
       Enabled         =   0   'False
-      Interval        =   2000
+      Interval        =   250
       Left            =   3360
       Top             =   5040
    End
@@ -257,29 +257,28 @@ Dim abrir_puerto As Boolean
 
 Dim file_descarga As String
 Dim descargando As Boolean
+Dim configuracion As String
 
 Public Sub logg(L As String, Optional c As Integer = 2)
     Dim txt As String
     
-    If log.Text <> "" Then If Mid$(log.Text, Len(log.Text), 1) <> vbLf And Mid$(log.Text, Len(log.Text), 1) <> vbCr Then log.Text = log.Text & vbCrLf
+    'If log.Text <> "" Then If Mid$(log.Text, Len(log.Text), 1) <> vbLf And Mid$(log.Text, Len(log.Text), 1) <> vbCr Then log.Text = log.Text & vbCrLf
     
-        LockWindowUpdate (log.hWnd)
+        'LockWindowUpdate (log.hWnd)
         txt = ">> " + L
-        
-        log.Text = log.Text + txt + vbCrLf
-        log.SelStart = Len(log.Text) - Len(txt) + 3
-        log.SelLength = Len(txt)
+        'log.SetFocus
+        'log.Text = log.Text + txt + vbCrLf
+        'log.SelStart = Len(log.Text) - Len(txt)
+        'log.SelLength = Len(txt)
         log.SelColor = QBColor(c)
-        log.SelLength = 0
+        log.SelText = txt + vbCrLf
         
         'If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
-        log.SelStart = Len(log.Text) - 1
-        log.SelLength = 1
-        log.SelLength = 0
-        LockWindowUpdate (0)
-    Open App.Path & "\log" & Date$ & ".txt" For Append As #2
-    Write #2, Date$, Time$, Int(Timer), L
-    Close #2
+        'log.SelStart = Len(log.Text) - 1
+        'LockWindowUpdate (0)
+    'Open App.Path & "\log" & Date$ & ".txt" For Append As #2
+    'Write #2, Date$, Time$, Int(Timer), L
+    'Close #2
 End Sub
 
 Public Function BytesLength(abBytes() As Byte) As Long
@@ -309,14 +308,14 @@ If url_version <> "" Then
         logg "¡Encontrada nueva version! " & version, 5
         DoEvents
         url_actualizador = INIRead("SVN", "url_actualizador", App.Path + "\configuracion.ini")
-        logg "¡A descargarla!", 2
+        logg "¡A descargarla!", 5
         DoEvents
         descargando = True
         file_descarga = "actualizador.exe"
         With Inet1
             .AccessType = icUseDefault
             'Indicamos el url del archivo
-            .url = url_actualizador
+            .URL = url_actualizador
             'Indicamos que vamos a descargar o recuperar un archivo desde una url
             .Execute , "GET"
         End With
@@ -547,18 +546,20 @@ Private Sub Form_Load()
     log.Text = ""
     Dim a As Boolean
     Dim version As String
+    configuracion = App.Path + "\configuracion.ini"
     version = App.Major & "." & App.Minor & "." & App.Revision
     logg App.Title & " versión: " & version
     logg "Cargando configuración..."
     If Dir(App.Path + "\actualizador.ini", vbHidden) <> "" Then
-        velocidad.Text = INIRead("SERIE", "velocidad", App.Path + "\configuracion.ini")
-        puerto.Text = INIRead("SERIE", "puerto", App.Path + "\configuracion.ini")
+        velocidad.Text = INIRead("SERIE", "velocidad", configuracion)
+        puerto.Text = INIRead("SERIE", "puerto", configuracion)
     Else
-        a = INIWrite("SERIE", "velocidad", "9600", App.Path + "\configuracion.ini")
-        a = INIWrite("SERIE", "puerto", "1", App.Path + "\configuracion.ini")
+        a = INIWrite("SERIE", "velocidad", "9600", configuracion)
+        a = INIWrite("SERIE", "puerto", "1", configuracion)
     End If
     logg "Puerto COM" & puerto.Text & ": a " & velocidad.Text & " baudios."
     abrir_puerto = False
+    'actualiza.Enabled = True
     actualizar
 End Sub
 
@@ -603,7 +604,7 @@ If descargando Then
                 bDone = True
             End If
             
-            logg "0%": DoEvents
+            Me.Caption = "0% Descargada": DoEvents
             
             Do While Not bDone
                 'Almacenamos en un array el contenido del archivo que se va leyendo
@@ -617,7 +618,7 @@ If descargando Then
                 'Aumentamos la barra de progreso
                  
                 size = size + (Len(vtData) * 2)
-                logg Int(size * 100 / filesize) & "%": DoEvents
+                 Me.Caption = Int(size * 100 / filesize) & "% Descargada": DoEvents
                 If Len(vtData) = 0 Then
                     bDone = True
                 End If
@@ -625,11 +626,11 @@ If descargando Then
 
         Close #1
     
-        logg "Actualizador descargado correctamente"
+        logg "Actualizador descargado correctamente", 5
         DoEvents
         
         If filesize > 10 Then
-            logg "Ejecutando actualizador..."
+            logg "Ejecutando actualizador...", 5
         'Shell App.Path + "\actualizador.exe"
         '    Unload Me
         'Else
@@ -645,7 +646,7 @@ If descargando Then
         '    Shell (path_ejecutable)
         '    a = "¡Adios!": DoEvents
         Else
-            logg "Ocurrió un error al descargar el actualizador", 5
+            logg "Ocurrió un error al descargar el actualizador", 4
             DoEvents
         End If
     End Select
@@ -661,6 +662,14 @@ End Sub
 
 Private Sub log_KeyPress(KeyAscii As Integer)
 enviar (Chr$(KeyAscii))
+End Sub
+
+Private Sub puerto_Change()
+If INIWrite("SERIE", "puerto", puerto.Text, configuracion) Then
+    logg "Cambiado parámetro de puerto"
+Else
+    logg "Ocurrió un error al guardar el parámetro", 4
+End If
 End Sub
 
 Private Sub Timer1_Timer()
@@ -694,3 +703,10 @@ End If
 
 End Sub
 
+Private Sub velocidad_Change()
+If INIWrite("SERIE", "velocidad", puerto.Text, configuracion) Then
+    logg "Cambiado parámetro de velocidad"
+Else
+    logg "Ocurrió un error al guardar el parámetro", 4
+End If
+End Sub
