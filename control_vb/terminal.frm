@@ -58,7 +58,6 @@ Begin VB.Form terminal
       _ExtentY        =   10821
       _Version        =   393217
       BackColor       =   16777215
-      Enabled         =   -1  'True
       HideSelection   =   0   'False
       ReadOnly        =   -1  'True
       ScrollBars      =   2
@@ -120,7 +119,7 @@ Begin VB.Form terminal
       TabIndex        =   6
       Text            =   "9600"
       Top             =   6240
-      Width           =   615
+      Width           =   495
    End
    Begin MSComDlg.CommonDialog cd 
       Left            =   1560
@@ -207,7 +206,7 @@ Begin VB.Form terminal
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00FFFFFF&
-      Height          =   375
+      Height          =   255
       Left            =   120
       TabIndex        =   4
       Top             =   6240
@@ -248,31 +247,41 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
- Option Explicit
+Option Explicit
+
 Dim fps As Integer
-Const IP = "colegioatalaya.com"
-
-
 
 Dim t_grafica(8) As Single
 Dim buffer As String
 Dim abrir_puerto As Boolean
 
+Dim file_descarga As String
+Dim descargando As Boolean
 
-
-Public Sub logg(L As String)
-If log.Text <> "" Then If Mid$(log.Text, Len(log.Text), 1) <> vbLf And Mid$(log.Text, Len(log.Text), 1) <> vbCr Then log.Text = log.Text & vbCrLf
-
-    LockWindowUpdate (log.hWnd)
-    log.Text = log.Text + Time$ + ">>" + L + vbCrLf
-    'If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
-    log.SelStart = Len(log.Text) - 1
-    log.SelLength = 1
-    LockWindowUpdate (0&)
-Open App.Path & "\log" & Date$ & ".txt" For Append As #2
-Write #2, Date$, Time$, Int(Timer), L
-Close #2
+Public Sub logg(L As String, Optional c As Integer = 2)
+    Dim txt As String
+    
+    If log.Text <> "" Then If Mid$(log.Text, Len(log.Text), 1) <> vbLf And Mid$(log.Text, Len(log.Text), 1) <> vbCr Then log.Text = log.Text & vbCrLf
+    
+        LockWindowUpdate (log.hWnd)
+        txt = ">> " + L
+        
+        log.Text = log.Text + txt + vbCrLf
+        log.SelStart = Len(log.Text) - Len(txt) + 3
+        log.SelLength = Len(txt)
+        log.SelColor = QBColor(c)
+        log.SelLength = 0
+        
+        'If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
+        log.SelStart = Len(log.Text) - 1
+        log.SelLength = 1
+        log.SelLength = 0
+        LockWindowUpdate (0)
+    Open App.Path & "\log" & Date$ & ".txt" For Append As #2
+    Write #2, Date$, Time$, Int(Timer), L
+    Close #2
 End Sub
+
 Public Function BytesLength(abBytes() As Byte) As Long
     ' Trap error if array is empty
     On Error Resume Next
@@ -280,31 +289,48 @@ Public Function BytesLength(abBytes() As Byte) As Long
 End Function
 
 Private Sub actualizar()
-Dim version As Variant
+On Error GoTo Err_Sub
 Dim b() As Byte
-version = Inet1.OpenURL("http://" & IP & "/aurebot/version.txt", icString)
-If App.Revision < version Then
-    logg "Encontrada nueva version..."
-    On Error Resume Next
-    Inet1.OpenURL ("http://" & IP & "/aurebot/actualizador.exe")
-    MsgBox InStr(Inet1.GetHeader, "404 Not Found")
-    If (InStr(Inet1.GetHeader, "404 Not Found") = 0) Then
-    On Error GoTo 0
-    b = Inet1.OpenURL("http://" & IP & "/aurebot/actualizador.exe", icByteArray)
-        logg "Recibido actualizador... guardando..."
-        Open App.Path + "\actualizador.exe" For Binary Access Write As #2
-            Put #2, , b()
-        Close #2
-        logg "Listo... ejecutando..."
-        Shell App.Path + "\actualizador.exe"
-        Unload Me
+Dim url_version As String
+Dim url_actualizador As String
+Dim version As String
+
+url_version = INIRead("SVN", "url_version", App.Path + "\configuracion.ini")
+version = App.Major & "." & App.Minor & "." & App.Revision
+    
+If url_version <> "" Then
+    DoEvents
+    descargando = False
+    file_descarga = ""
+    version = Inet1.OpenURL(url_version, icString)
+    Inet1.Cancel
+    DoEvents
+    If App.Revision <> version Then
+        logg "¡Encontrada nueva version! " & version, 5
+        DoEvents
+        url_actualizador = INIRead("SVN", "url_actualizador", App.Path + "\configuracion.ini")
+        logg "¡A descargarla!", 2
+        DoEvents
+        descargando = True
+        file_descarga = "actualizador.exe"
+        With Inet1
+            .AccessType = icUseDefault
+            'Indicamos el url del archivo
+            .url = url_actualizador
+            'Indicamos que vamos a descargar o recuperar un archivo desde una url
+            .Execute , "GET"
+        End With
     Else
-        logg "No se pudo comprobar la actualización."
+        logg "Tienes la última versión.", 2
     End If
 Else
-    logg "Tienes la última versión."
+    logg "Ocurrió un error al cargar la configuración.", 4
 End If
+Exit Sub
 
+Err_Sub:
+    logg "[Actualizar]" & Err.Description, 4
+    On Error Resume Next
 End Sub
 
 Private Sub actualiza_Timer()
@@ -313,18 +339,19 @@ actualizar
 End Sub
 
 Private Sub cmp_Timer()
-Dim pos, t As Integer
-Dim b As String
-If com.PortOpen = True Then
-    fps = fps + 1
-'Do While com.InBufferCount > 0
-    b = com.Input
-    If b <> "" Then
-        If Len(buffer) > 25 Then buffer = ""
-        buffer = buffer & b
+On Error GoTo Err_Sub
+    Dim pos, t As Integer
+    Dim b As String
+    If com.PortOpen = True Then
+        fps = fps + 1
+        'Do While com.InBufferCount > 0
+            b = com.Input
+            If b <> "" Then
+                If Len(buffer) > 25 Then buffer = ""
+                buffer = buffer & b
+            End If
+        'Loop
     End If
-'Loop
-End If
     pos = InStr(1, buffer, "<", vbTextCompare)
     If pos > 0 And Len(buffer) >= pos + 5 And Mid(buffer, pos + 5, 1) = ">" Then
             'logg "|" & Mid(buffer, pos + 1, 2) & "|"
@@ -370,18 +397,28 @@ End If
         buffer = Mid$(buffer, pos + 5)
         datos.FillColor = QBColor(2)
         DoEvents
-End If
-If imprimir.Value = Unchecked Then
-    If b <> "" Then
-      LockWindowUpdate (log.hWnd)
-      log.Text = log.Text & b
-'      If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
-        On Error Resume Next
-      log.SelStart = Len(log.Text) - 1
-      log.SelLength = 1
-      LockWindowUpdate (0&)
     End If
-End If
+    
+    If imprimir.Value = Unchecked Then
+        If b <> "" Then
+            LockWindowUpdate (log.hWnd)
+            log.Text = log.Text & b
+            log.SelStart = Len(log.Text) - Len(b)
+            log.SelLength = Len(b)
+            log.SelColor = QBColor(1)
+            'If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
+            On Error Resume Next
+            log.SelStart = Len(log.Text) - 1
+            log.SelLength = 1
+            LockWindowUpdate (0)
+        End If
+    End If
+    
+Exit Sub
+
+Err_Sub:
+    logg Err.Description, 4
+    On Error Resume Next
 End Sub
 
 
@@ -507,17 +544,27 @@ End Select
 End Sub
 
 Private Sub Form_Load()
-log.Text = ""
-logg "Iniciando: " & App.Title & " Versión:" & App.Major & "." & App.Minor & "." & App.Revision
-logg "Cargado"
-abrir_puerto = False
-logg "Inicio Ok."
-
+    log.Text = ""
+    Dim a As Boolean
+    Dim version As String
+    version = App.Major & "." & App.Minor & "." & App.Revision
+    logg App.Title & " versión: " & version
+    logg "Cargando configuración..."
+    If Dir(App.Path + "\actualizador.ini", vbHidden) <> "" Then
+        velocidad.Text = INIRead("SERIE", "velocidad", App.Path + "\configuracion.ini")
+        puerto.Text = INIRead("SERIE", "puerto", App.Path + "\configuracion.ini")
+    Else
+        a = INIWrite("SERIE", "velocidad", "9600", App.Path + "\configuracion.ini")
+        a = INIWrite("SERIE", "puerto", "1", App.Path + "\configuracion.ini")
+    End If
+    logg "Puerto COM" & puerto.Text & ": a " & velocidad.Text & " baudios."
+    abrir_puerto = False
+    actualizar
 End Sub
 
 Private Sub Form_Terminate()
 If com.PortOpen = True Then com.PortOpen = False
-logg "Terminate."
+logg "Terminate.", 4
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -525,7 +572,91 @@ If IsFormLoaded(panel) Then Unload panel
 If IsFormLoaded(pnl_control) Then Unload pnl_control
 If IsFormLoaded(barras_analogicas) Then Unload barras_analogicas
 If IsFormLoaded(pnl_grafico) Then Unload pnl_grafico
-logg "Unload"
+logg "Unload", 4
+End Sub
+
+Private Sub Inet1_StateChanged(ByVal State As Integer)
+'On Error GoTo Err_Sub
+If descargando Then
+    Dim tempArray() As Byte ' Un array para grabar los datos en un archivo
+    Dim bDone As Boolean
+    'Para el tamaño del archivo en bytes que se usa para el array
+    Dim filesize As Long
+    ' Acá almacenamos los datos
+    Dim vtData As Variant
+    Dim size As Long
+    Select Case State
+        Case icResponseCompleted
+            bDone = False
+            'Para saber el tamaño del fichero en bytes
+            filesize = Inet1.GetHeader("Content-length")
+            'Creamos y abrimos un nuevo archivo en modo binario
+            Open file_descarga For Binary As #1
+        
+            ' Leemos de a 1 Kbytes. El segundo parámetro indica _
+            el tipo de fichero. Tipo texto o tipo Binario, en este caso binario
+            vtData = Inet1.GetChunk(1024, icByteArray)
+        
+            'Si el tamaño del fichero es 0 ponemos bDone en _
+            True para que no entre en el bucle
+            If Len(vtData) = 0 Then
+                bDone = True
+            End If
+            
+            logg "0%": DoEvents
+            
+            Do While Not bDone
+                'Almacenamos en un array el contenido del archivo que se va leyendo
+                tempArray = vtData
+                'Escribimos los datos en el archivo
+                Put #1, , tempArray
+                'Leemos  datos de a 1 kb (1024 bytes)
+                vtData = Inet1.GetChunk(1024, icByteArray)
+         
+                DoEvents
+                'Aumentamos la barra de progreso
+                 
+                size = size + (Len(vtData) * 2)
+                logg Int(size * 100 / filesize) & "%": DoEvents
+                If Len(vtData) = 0 Then
+                    bDone = True
+                End If
+            Loop
+
+        Close #1
+    
+        logg "Actualizador descargado correctamente"
+        DoEvents
+        
+        If filesize > 10 Then
+            logg "Ejecutando actualizador..."
+        'Shell App.Path + "\actualizador.exe"
+        '    Unload Me
+        'Else
+        '    logg "No se pudo comprobar la actualización.", 4
+        'End If
+        '    a = "Borrando ficheros antiguos...": DoEvents
+        '    On Error Resume Next
+        '    Kill (path_ejecutable)
+        '    On Error GoTo Err_Sub
+        '    a = "Copiando...": DoEvents
+        '    Name path_tmp As path_ejecutable
+        '    a = "Ejecutando...": DoEvents
+        '    Shell (path_ejecutable)
+        '    a = "¡Adios!": DoEvents
+        Else
+            logg "Ocurrió un error al descargar el actualizador", 5
+            DoEvents
+        End If
+    End Select
+
+    Exit Sub
+End If
+Exit Sub
+Err_Sub:
+    MsgBox Err.Description, vbCritical
+    On Error Resume Next
+    Inet1.Cancel
 End Sub
 
 Private Sub log_KeyPress(KeyAscii As Integer)
@@ -539,24 +670,24 @@ If abrir_puerto = True Then
     On Error GoTo 31415
     If com.PortOpen = False Then
         datos.FillColor = QBColor(4)
-         logg "Abriendo puerto..."
-         com.CommPort = puerto.Text
+        logg "Abriendo puerto..."
+        com.CommPort = puerto.Text
         ' 9600 baudios, sin paridad, 8 bits de datos y 1
-         ' bit de parada.
-         com.Settings = velocidad.Text & ",N,8,1"
+        ' bit de parada.
+        com.Settings = velocidad.Text & ",N,8,1"
         ' Indicar al control que lea todo el búfer al usar
-         ' Input.
-         com.InputLen = 0
-        ' Abrir el puerto.
-         com.PortOpen = True
-         logg "Puerto abierto."
+        ' Input.
+        com.InputLen = 0
+        'Abrir el puerto.
+        com.PortOpen = True
+        logg "Puerto abierto."
     Else
         If datos.FillColor <> QBColor(2) Then datos.FillColor = QBColor(14)
     End If
 GoTo 31416
 31415
     datos.FillColor = QBColor(4)
-    logg "No se pudo abrir."
+    logg "No se pudo abrir.", 4
 31416
     On Error GoTo 0
 End If
