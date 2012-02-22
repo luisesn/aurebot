@@ -1,5 +1,5 @@
 [Root]
-Most Recent Package=Paquete de instalación estándar 1
+Most Recent Package=AureBot
 
 
 [Package|Paquete de instalación estándar 1|Sistema de vigilancia]
@@ -163,5 +163,178 @@ ServerSideCab=
 File1=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalación\setup.exe
 File2=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalación\Setup.Lst
 File3=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalación\Control_AUREBot.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|AureBot|Sistema de vigilancia]
+Icon1=Vigilancia_Liano.exe
+Title1=Sistema de vigilancia
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|AureBot|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalacion
+
+[Package|AureBot|Configure DAO ISAMs]
+Applicable=No
+
+[Package|AureBot|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|AureBot|Files Found]
+
+[Package|AureBot|Files Released]
+
+[Package|AureBot|Missing Dependency Information]
+E:\Proyectos\alarma_pueblo\vb60\ezvidc60\ezVidC60.ocx=
+E:\Proyectos\alarma_pueblo\vb60\sisteee\ijl11.dll=
+E:\Proyectos\alarma_pueblo\ezvidc60\ezVidC60.ocx=
+F:\Proyectos\alarma_pueblo\vb60\ezvidc60\ezVidC60.ocx=
+
+[Package|AureBot|Out-of-Date Dependency Information]
+C:\WINDOWS\system32\MSCOMCTL.OCX=
+G:\WINDOWS\system32\MSCOMCTL.OCX=
+
+[Package|AureBot|Files Added]
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\configuracion.ini=
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\actualizador.ini=
+
+[Package|AureBot|Files Removed]
+
+[Package|AureBot|Files In Project]
+C:\WINDOWS\system32\msvbvm60.dll=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\system32\VB6ES.DLL=Yes
+C:\WINDOWS\system32\MSCOMCTL.OCX=Yes
+C:\WINDOWS\system32\MSCMCES.DLL=Yes
+C:\WINDOWS\system32\MSCOMM32.OCX=Yes
+C:\WINDOWS\system32\MSCOMES.DLL=Yes
+C:\WINDOWS\system32\MSWINSCK.OCX=Yes
+C:\WINDOWS\system32\WINSKES.DLL=Yes
+C:\WINDOWS\system32\MSINET.OCX=Yes
+C:\WINDOWS\system32\INETES.DLL=Yes
+C:\WINDOWS\system32\SYSINFO.OCX=Yes
+C:\WINDOWS\system32\SYSINES.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINDOWS\system32\VB6STKIT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Control_AUREBot.exe=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\WINDOWS\system32\COMDLG32.OCX=Yes
+C:\WINDOWS\system32\CMDLGES.DLL=Yes
+C:\WINDOWS\system32\RICHTX32.OCX=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=Yes
+C:\WINDOWS\system32\RCHTXES.DLL=Yes
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\configuracion.ini=Yes
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\actualizador.ini=Yes
+
+[Package|AureBot|Configure Registry Files]
+Applicable=No
+
+[Package|AureBot|Configure Remote Servers]
+Applicable=No
+
+[Package|AureBot|Install Locations]
+E:\Proyectos\alarma_pueblo\vb60\sisteee\Vigilancia_Liano.exe=$(AppPath)
+C:\WINDOWS\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\oleaut32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\olepro32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\asycfilt.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\VB6ES.DLL=$(WinSysPath)
+C:\WINDOWS\system32\msvbvm50.dll=$(WinSysPathSysFile)
+E:\Proyectos\alarma_pueblo\vb60\sisteee\ijl11.dll=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMCTL.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSCMCES.DLL=$(WinSysPath)
+E:\Proyectos\alarma_pueblo\vb60\ezvidc60\ezVidC60.ocx=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMM32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMES.DLL=$(WinSysPath)
+C:\WINDOWS\system32\MSWINSCK.OCX=$(WinSysPath)
+C:\WINDOWS\system32\WINSKES.DLL=$(WinSysPath)
+C:\WINDOWS\system32\MSINET.OCX=$(WinSysPath)
+C:\WINDOWS\system32\INETES.DLL=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\WINDOWS\system32\SYSINFO.OCX=$(WinSysPath)
+C:\WINDOWS\system32\SYSINES.DLL=$(WinSysPath)
+G:\WINDOWS\system32\msvbvm60.dll=$(WinSysPathSysFile)
+G:\WINDOWS\system32\oleaut32.dll=$(WinSysPathSysFile)
+G:\WINDOWS\system32\olepro32.dll=$(WinSysPathSysFile)
+G:\WINDOWS\system32\asycfilt.dll=$(WinSysPathSysFile)
+G:\WINDOWS\system32\stdole2.tlb=$(WinSysPathSysFile)
+G:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+G:\WINDOWS\system32\VB6ES.DLL=$(WinSysPath)
+G:\WINDOWS\system32\msvbvm50.dll=$(WinSysPathSysFile)
+G:\WINDOWS\system32\MSCOMCTL.OCX=$(WinSysPath)
+G:\WINDOWS\system32\MSCMCES.DLL=$(WinSysPath)
+E:\Proyectos\alarma_pueblo\ezvidc60\ezVidC60.ocx=$(WinSysPath)
+G:\WINDOWS\system32\MSCOMM32.OCX=$(WinSysPath)
+G:\WINDOWS\system32\MSCOMES.DLL=$(WinSysPath)
+G:\WINDOWS\system32\MSWINSCK.OCX=$(WinSysPath)
+G:\WINDOWS\system32\WINSKES.DLL=$(WinSysPath)
+G:\WINDOWS\system32\MSINET.OCX=$(WinSysPath)
+G:\WINDOWS\system32\INETES.DLL=$(WinSysPath)
+G:\WINDOWS\system32\SYSINFO.OCX=$(WinSysPath)
+G:\WINDOWS\system32\SYSINES.DLL=$(WinSysPath)
+G:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+G:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+G:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+G:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+F:\Proyectos\AureBot\control_vb\Control_AUREBot.exe=$(AppPath)
+F:\Proyectos\alarma_pueblo\vb60\ezvidc60\ezVidC60.ocx=$(WinSysPath)
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Control_AUREBot.exe=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\WINDOWS\system32\COMDLG32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\CMDLGES.DLL=$(WinSysPath)
+C:\WINDOWS\system32\RICHTX32.OCX=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\RCHTXES.DLL=$(WinSysPath)
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\configuracion.ini=$(AppPath)
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\actualizador.ini=$(AppPath)
+
+[Package|AureBot|Configure Shared Files]
+Applicable=Yes
+E:\Proyectos\alarma_pueblo\vb60\sisteee\Vigilancia_Liano.exe=No
+F:\Proyectos\AureBot\control_vb\Control_AUREBot.exe=No
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Control_AUREBot.exe=Yes
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\configuracion.ini=Yes
+C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\actualizador.ini=Yes
+
+[Package|AureBot|Distribution]
+Type=single
+Size=
+Title=AureBot User Interface
+
+[Package|AureBot|IconGroups]
+Group0=Aure
+PrivateGroup0=0
+Parent0=$(Programs)
+
+[Package|AureBot|Aure]
+Icon1=Control_AUREBot.exe
+Title1=AureBot UI
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|AureBot|Package]
+PackageFolder=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalacion
+ProjectFolder=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb
+ServerSideCab=
+File1=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalacion\setup.exe
+File2=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalacion\Setup.Lst
+File3=C:\Documents and Settings\Administrador\Mis documentos\My Dropbox\Aurebot_p\control_vb\Instalacion\Control_AUREBot.CAB
 Handler1=PDWizard.FolderDplySubWiz
 Handler2=PDWizard.WebPostDplySubWiz
