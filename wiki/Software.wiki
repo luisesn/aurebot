@@ -20,13 +20,13 @@ motores_palante();
  * *[http://code.google.com/p/aurebot/source/browse/trunk/lib/ldr.h lib/ldr.h]:* Funciones para el uso simple de los sensores de luminosidad (Resistencias fotoeléctricas)
  * *[http://code.google.com/p/aurebot/source/browse/trunk/lib/flex_lcd.c lib/flex_lcd.c]:* Contiene las funciones parar inicializar y usar la pantalla LCD de la que disponen los robots.
  * * [http://code.google.com/p/aurebot/source/browse/trunk/lib/motores.h lib/motores.h]:* Aquí se definen las funciones para hacer uso de los motores del robot.
-  * Funciones directas:
+  * *Funciones directas:*
    * `motores_palante():` El robot avanzará 
    * `motores_patras():` El robot avanzará en sentido inverso
    * `motores_paderecha():` El robot girará hacia la derecha
    * `motores_paizquierda():` El robot girará hacia la izquierda
    * `motores_parar():` Detiene el robot
-  * Funciones con control de velocidad: Estas funciones son para mover el robot controlando la velocidad, hacen uso de un parámetro (velocidad, un entero de 0, parado, a 255, máxima velocidad), es necesario activar antes explicitamente mediante la función _motores_cv_configurar()_
+  * *Funciones con control de velocidad:* Estas funciones son para mover el robot controlando la velocidad, hacen uso de un parámetro (velocidad, un entero de 0, parado, a 255, máxima velocidad), es necesario activar antes explicitamente mediante la función _motores_cv_configurar()_
    * `motores_cv_configurar():` Configura el control de velocidad
    * `motores_cv_off():` Desactiva el control de velocidad
    * `motores_cv_palante(int velocidad):`
