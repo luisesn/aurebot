@@ -17,9 +17,9 @@ motores_palante();
 = Librerias =
  * *[http://code.google.com/p/aurebot/source/browse/trunk/lib/aurebot.h lib/aurebot.h]*: Contiene las funciones esenciales del AureBot, desde las rutinas de inicialización a la configuración del puerto USB y del reloj del microcontrolador
  * * [http://code.google.com/p/aurebot/source/browse/trunk/lib/2leds.h lib/2leds.h]*: 
+ * *  [http://code.google.com/p/aurebot/source/browse/trunk/lib/ldr.h lib/ldr.h]: Funciones para el uso simple de los sensores de luminosidad (Resistencias fotoeléctricas)
  * * [http://code.google.com/p/aurebot/source/browse/trunk/lib/flex_lcd.c lib/flex_lcd.c]*: Contiene las funciones parar inicializar y usar la pantalla LCD de la que disponen los robots.
  * * [http://code.google.com/p/aurebot/source/browse/trunk/lib/motores.h lib/motores.h]*:
 
-http://code.google.com/p/aurebot/source/browse/trunk/lib/ldr.h
 = Código =
 Todo el código esta disponible desde [http://code.google.com/p/aurebot/source/browse/#svn%2Ftrunk aquí] y puede actualizarse facilmente haciendo uso de svn.
