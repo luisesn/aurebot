@@ -20,8 +20,8 @@ motores_palante();
  * *[http://code.google.com/p/aurebot/source/browse/trunk/lib/ldr.h lib/ldr.h]:* Funciones para el uso simple de los sensores de luminosidad (Resistencias fotoeléctricas)
  * *[http://code.google.com/p/aurebot/source/browse/trunk/lib/flex_lcd.c lib/flex_lcd.c]:* Contiene las funciones parar inicializar y usar la pantalla LCD de la que disponen los robots.
  * * [http://code.google.com/p/aurebot/source/browse/trunk/lib/motores.h lib/motores.h]:* Aquí se definen las funciones para hacer uso de los motores del robot.
- ** motores_palante()
- ** motores_patras()
+  * motores_palante()
+  * motores_patras()
 
 = Código =
 Todo el código esta disponible desde [http://code.google.com/p/aurebot/source/browse/#svn%2Ftrunk aquí] y puede actualizarse facilmente haciendo uso de svn.
