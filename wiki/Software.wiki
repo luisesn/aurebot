@@ -26,7 +26,7 @@ motores_palante();
    * *motores_paderecha():* El robot girará hacia la derecha
    * *motores_paizquierda():* El robot girará hacia la izquierda
    * *motores_parar():* Detiene el robot
-  * Funciones con control de velocidad: Estas funciones son para mover el robot controlando la velocidad, hacen uso de un parámetro (velocidad, int de 0 [parado] a 255 [máxima vel.]), es necesario activar antes explicitamente mediante la función _motores_cv_configurar()_
+  * Funciones con control de velocidad: Estas funciones son para mover el robot controlando la velocidad, hacen uso de un parámetro (velocidad, un entero de 0, parado, a 255, máxima velocidad), es necesario activar antes explicitamente mediante la función _motores_cv_configurar()_
    * *motores_cv_configurar():* Configura el control de velocidad
    * *motores_cv_off():* Desactiva el control de velocidad
    * *motores_cv_palante(int velocidad):*
