@@ -21,8 +21,8 @@ motores_palante();
  * *[http://code.google.com/p/aurebot/source/browse/trunk/lib/flex_lcd.c lib/flex_lcd.c]:* Contiene las funciones parar inicializar y usar la pantalla LCD de la que disponen los robots.
  * * [http://code.google.com/p/aurebot/source/browse/trunk/lib/motores.h lib/motores.h]:* Aquí se definen las funciones para hacer uso de los motores del robot.
   * Funciones directas:
-   * *motores_palante():* El robot avanzará 
-   * *motores_patras():* El robot avanzará en sentido inverso
+   * `motores_palante():` El robot avanzará 
+   * `motores_patras():` El robot avanzará en sentido inverso
    * *motores_paderecha():* El robot girará hacia la derecha
    * *motores_paizquierda():* El robot girará hacia la izquierda
    * *motores_parar():* Detiene el robot
