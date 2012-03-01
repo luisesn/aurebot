@@ -58,6 +58,7 @@ Begin VB.Form terminal
       _ExtentY        =   10821
       _Version        =   393217
       BackColor       =   16777215
+      Enabled         =   -1  'True
       HideSelection   =   0   'False
       ReadOnly        =   -1  'True
       ScrollBars      =   2
@@ -293,18 +294,29 @@ Dim b() As Byte
 Dim url_version As String
 Dim url_actualizador As String
 Dim version As String
+Dim version_local As String
+Dim version_() As String
+Dim version__() As String
 
 url_version = INIRead("SVN", "url_version", App.Path + "\configuracion.ini")
-version = App.Major & "." & App.Minor & "." & App.Revision
+version_local = App.Major & "." & App.Minor & "." & App.Revision
     
 If url_version <> "" Then
     DoEvents
     descargando = False
     file_descarga = ""
+    logg "Buscando actualizaciones...", 5
     version = Inet1.OpenURL(url_version, icString)
+    logg "La versión actual es la " & version, 5
+    version_ = Split(version, ".")
+    version__ = Split(version_local, ".")
+    
     Inet1.Cancel
     DoEvents
-    If App.Revision <> version Then
+    If (version_(0) > version__(0)) Or _
+        (version_(0) = version__(0) And version_(1) > version__(1)) Or _
+        (version_(0) = version__(0) And version_(1) = version__(1) And version_(1) > version__(1)) Then
+        
         logg "¡Encontrada nueva version! " & version, 5
         DoEvents
         url_actualizador = INIRead("SVN", "url_actualizador", App.Path + "\configuracion.ini")
@@ -312,6 +324,7 @@ If url_version <> "" Then
         DoEvents
         descargando = True
         file_descarga = "actualizador.exe"
+        Exit Sub
         With Inet1
             .AccessType = icUseDefault
             'Indicamos el url del archivo
@@ -320,7 +333,7 @@ If url_version <> "" Then
             .Execute , "GET"
         End With
     Else
-        logg "Tienes la última versión.", 2
+        logg "Tienes la última versión.", 5
     End If
 Else
     logg "Ocurrió un error al cargar la configuración.", 4
