@@ -18,12 +18,6 @@ Begin VB.Form terminal
    ScaleHeight     =   6630
    ScaleWidth      =   9960
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Timer actualiza 
-      Enabled         =   0   'False
-      Interval        =   250
-      Left            =   3360
-      Top             =   5040
-   End
    Begin InetCtlsObjects.Inet Inet1 
       Left            =   9360
       Top             =   5400
@@ -36,7 +30,7 @@ Begin VB.Form terminal
       Height          =   255
       Left            =   3480
       Style           =   1  'Graphical
-      TabIndex        =   14
+      TabIndex        =   13
       Top             =   6360
       Width           =   1095
    End
@@ -44,21 +38,20 @@ Begin VB.Form terminal
       Caption         =   "P. Gráfico"
       Height          =   255
       Left            =   6720
-      TabIndex        =   13
+      TabIndex        =   12
       Top             =   6360
       Width           =   1095
    End
    Begin RichTextLib.RichTextBox log 
       Height          =   6135
       Left            =   0
-      TabIndex        =   12
+      TabIndex        =   11
       Top             =   0
       Width           =   9975
       _ExtentX        =   17595
       _ExtentY        =   10821
       _Version        =   393217
       BackColor       =   16777215
-      Enabled         =   -1  'True
       HideSelection   =   0   'False
       ReadOnly        =   -1  'True
       ScrollBars      =   2
@@ -78,7 +71,7 @@ Begin VB.Form terminal
       Caption         =   "P. Digital"
       Height          =   255
       Left            =   8880
-      TabIndex        =   11
+      TabIndex        =   10
       Top             =   6360
       Width           =   1095
    End
@@ -86,7 +79,7 @@ Begin VB.Form terminal
       Caption         =   "P. Analógico"
       Height          =   255
       Left            =   7800
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   6360
       Width           =   1095
    End
@@ -94,7 +87,7 @@ Begin VB.Form terminal
       Caption         =   "Limpiar"
       Height          =   255
       Left            =   7800
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   6120
       Width           =   2175
    End
@@ -102,7 +95,7 @@ Begin VB.Form terminal
       Caption         =   "Sensores"
       Height          =   255
       Left            =   5640
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   6360
       Width           =   1095
    End
@@ -110,14 +103,14 @@ Begin VB.Form terminal
       Caption         =   "P. Control"
       Height          =   255
       Left            =   4560
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   6360
       Width           =   1095
    End
    Begin VB.TextBox velocidad 
       Height          =   285
       Left            =   1200
-      TabIndex        =   6
+      TabIndex        =   5
       Text            =   "9600"
       Top             =   6240
       Width           =   495
@@ -134,14 +127,14 @@ Begin VB.Form terminal
       Caption         =   "Cargar archivo"
       Height          =   255
       Left            =   5640
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   6120
       Width           =   2175
    End
    Begin VB.TextBox puerto 
       Height          =   285
       Left            =   720
-      TabIndex        =   3
+      TabIndex        =   2
       Text            =   "3"
       Top             =   6240
       Width           =   375
@@ -150,7 +143,7 @@ Begin VB.Form terminal
       Caption         =   "Conectar"
       Height          =   255
       Left            =   3480
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   6120
       Width           =   2175
    End
@@ -172,28 +165,6 @@ Begin VB.Form terminal
       Left            =   600
       Top             =   5640
    End
-   Begin VB.TextBox log1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
-         Name            =   "System"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   1335
-      Left            =   7200
-      Locked          =   -1  'True
-      MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
-      TabIndex        =   0
-      Text            =   "terminal.frx":1D47
-      Top             =   3000
-      Width           =   1215
-   End
    Begin VB.Label Label5 
       BackStyle       =   0  'Transparent
       Caption         =   "COM:"
@@ -209,7 +180,7 @@ Begin VB.Form terminal
       ForeColor       =   &H00FFFFFF&
       Height          =   255
       Left            =   120
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   6240
       Width           =   495
    End
@@ -228,7 +199,7 @@ Begin VB.Form terminal
       ForeColor       =   &H00FFFFFF&
       Height          =   255
       Left            =   1920
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   6240
       Width           =   1335
    End
@@ -265,7 +236,7 @@ Public Sub logg(L As String, Optional c As Integer = 2)
     
     'If log.Text <> "" Then If Mid$(log.Text, Len(log.Text), 1) <> vbLf And Mid$(log.Text, Len(log.Text), 1) <> vbCr Then log.Text = log.Text & vbCrLf
     
-        'LockWindowUpdate (log.hWnd)
+        LockWindowUpdate (log.hWnd)
         txt = ">> " + L
         'log.SetFocus
         'log.Text = log.Text + txt + vbCrLf
@@ -275,8 +246,8 @@ Public Sub logg(L As String, Optional c As Integer = 2)
         log.SelText = txt + vbCrLf
         
         'If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
-        'log.SelStart = Len(log.Text) - 1
-        'LockWindowUpdate (0)
+        log.SelStart = Len(log.Text) - 1
+        LockWindowUpdate (0)
     'Open App.Path & "\log" & Date$ & ".txt" For Append As #2
     'Write #2, Date$, Time$, Int(Timer), L
     'Close #2
@@ -313,9 +284,13 @@ If url_version <> "" Then
     
     Inet1.Cancel
     DoEvents
-    If (version_(0) > version__(0)) Or _
-        (version_(0) = version__(0) And version_(1) > version__(1)) Or _
-        (version_(0) = version__(0) And version_(1) = version__(1) And version_(1) > version__(1)) Then
+    'logg version_(0) & version__(0), 5
+    'logg version_(1) & version__(1), 5
+    'logg version_(2) & version__(2), 5
+
+    If (Int(version_(0)) > Int(version__(0))) Or _
+        (Int(version_(0)) = Int(version__(0)) And Int(version_(1)) > Int(version__(1))) Or _
+        (Int(version_(0)) = Int(version__(0)) And Int(version_(1)) = Int(version__(1)) And Int(version_(2)) > Int(version__(2))) Then
         
         logg "¡Encontrada nueva version! " & version, 5
         DoEvents
@@ -324,7 +299,6 @@ If url_version <> "" Then
         DoEvents
         descargando = True
         file_descarga = "actualizador.exe"
-        Exit Sub
         With Inet1
             .AccessType = icUseDefault
             'Indicamos el url del archivo
@@ -345,10 +319,6 @@ Err_Sub:
     On Error Resume Next
 End Sub
 
-Private Sub actualiza_Timer()
-actualiza.Enabled = False
-actualizar
-End Sub
 
 Private Sub cmp_Timer()
 On Error GoTo Err_Sub
@@ -414,14 +384,12 @@ On Error GoTo Err_Sub
     If imprimir.Value = Unchecked Then
         If b <> "" Then
             LockWindowUpdate (log.hWnd)
-            log.Text = log.Text & b
-            log.SelStart = Len(log.Text) - Len(b)
-            log.SelLength = Len(b)
-            log.SelColor = QBColor(1)
+            log.SelColor = QBColor(0)
+            log.SelText = b
+            
             'If (Len(log.Text) > 2000) Then log.Text = Mid$(log.Text, Len(log.Text) - 2000, 2000)
             On Error Resume Next
             log.SelStart = Len(log.Text) - 1
-            log.SelLength = 1
             LockWindowUpdate (0)
         End If
     End If
@@ -432,6 +400,7 @@ Err_Sub:
     logg Err.Description, 4
     On Error Resume Next
 End Sub
+
 
 
 
@@ -561,7 +530,7 @@ Private Sub Form_Load()
     Dim version As String
     configuracion = App.Path + "\configuracion.ini"
     version = App.Major & "." & App.Minor & "." & App.Revision
-    logg App.Title & " versión: " & version
+    logg App.Title & " versión: " & version & vbCrLf
     logg "Cargando configuración..."
     If Dir(configuracion, vbHidden) <> "" Then
         velocidad.Text = INIRead("SERIE", "velocidad", configuracion)

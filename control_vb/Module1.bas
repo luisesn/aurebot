@@ -47,6 +47,11 @@ IsFormLoaded = False
 End Function
 
 Public Sub enviar(t As String)
-If terminal.com.PortOpen = True Then terminal.com.Output = t: terminal.datos.FillColor = QBColor(1) Else terminal.logg "El puerto no está abierto."
+If terminal.com.PortOpen = True Then
+    terminal.com.Output = t
+    terminal.datos.FillColor = QBColor(1)
+Else
+    terminal.logg "El puerto no está abierto.", 4
+End If
 End Sub
 
