@@ -35,6 +35,8 @@
 */
 
 #include <../lib/aurebot.h>
+#include <../lib/motores.h>
+#include <../lib/flex_lcd.c>
 
 
 
@@ -48,6 +50,27 @@ void aure_serie()
       case 'u':
          printf (usb_cdc_putc, "¡¡Hola mundo!!\r\n");
          break;
+//Control de movimiento
+           case 'w':
+           case 'W':
+               motores_palante();
+               break;
+            case 's':
+            case 'S':
+               motores_patras();
+               break;
+            case 'd':
+            case 'D':
+               motores_paderecha();
+               break;
+            case 'a':
+            case 'A':
+               motores_paizda();
+               break;
+            case 'q':
+            case 'Q':
+               motores_parar();
+               break;         
    }
          printf (usb_cdc_putc, "%c", keypress);
    //Vaciamos el buffer
@@ -59,7 +82,12 @@ void aure_serie()
 //Rutina principal
 void main()
 {
- aure_configurar();
+   aure_configurar();
+   lcd_init();
+   lcd_setcursor_vb(0,0);
+   printf(lcd_putc, "AUREBOT\r ¡Working!");
+   
+   printf (usb_cdc_putc, "\r\nAUREBot\r\n");
    while(1)
    {
      // Si usamos el USB
