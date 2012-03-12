@@ -30,7 +30,7 @@ BuildTool=C-COMPILER
 OptionString=+FH
 AdditionalOptionString=
 BuildRequired=1
-FileList=G:\Aurebot_p\aplicacion_prueba\main.c
+FileList=C:\Documents and Settings\lcef-itt\Escritorio\AureBot\AureBot\codigo\aplicacion_prueba\main.c
 [main.c]
 Type=4
 Path=
@@ -43,10 +43,10 @@ AdditionalOptionString=
 [Windows]
 0=0000 %S 0 0 796 451 3 0
 [Opened Files]
-1=C:\Llave\Mis documentos\Dropbox\Aurebot_p\aplicacion_prueba\main.c
-2=C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\aurebot.h
-3=C:\Llave\Mis documentos\Dropbox\Aurebot_p\aplicacion_control_vb\main.c
-4=C:\Llave\Mis documentos\Dropbox\Aurebot_p\lib\motores.h
+1=main.c
+2=..\lib\aurebot.h
+3=C:\Documents and Settings\lcef-itt\Escritorio\AureBot\AureBot\codigo\lib\motores.h
+4=C:\Documents and Settings\lcef-itt\Mis documentos\Downloads\main.c
 5=
 [Units]
 Count=1

@@ -1,8 +1,9 @@
->>> Warning 203 "C:\Archivos de programa\PICC\drivers\pic18_usb.h" Line 523(1,1): Condition always TRUE
->>> Warning 203 "main.c" Line 64(1,1): Condition always TRUE
->>> Warning 216 "main.c" Line 78(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
->>> Warning 216 "main.c" Line 78(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
->>> Warning 216 "main.c" Line 78(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_cdc_flush_out_buffer)
->>> Warning 202 "G:\Aurebot_p\lib\bootloader\usb_desc_cdc.h" Line 154(16,37): Variable never used:   USB_CLASS_DESCRIPTORS
-      Memory usage:   ROM=15%      RAM=56% - 58%
-      0 Errors,  6 Warnings.
+>>> Warning 203 "C:\Archivos de programa\PICC\Drivers\pic18_usb.h" Line 523(1,1): Condition always TRUE
+>>> Warning 203 "main.c" Line 92(1,1): Condition always TRUE
+>>> Warning 216 "main.c" Line 106(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
+>>> Warning 216 "main.c" Line 106(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_cdc_flush_out_buffer)
+>>> Warning 216 "main.c" Line 106(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
+>>> Warning 202 "C:\Documents and Settings\lcef-itt\Escritorio\AureBot\AureBot\codigo\lib\bootloader\usb_desc_cdc.h" Line 154(16,37): Variable never used:   USB_CLASS_DESCRIPTORS
+>>> Warning 202 "C:\Documents and Settings\lcef-itt\Escritorio\AureBot\AureBot\codigo\lib\aurebot.h" Line 62(8,9): Variable never used:   t
+      Memory usage:   ROM=17%      RAM=57% - 59%
+      0 Errors,  7 Warnings.
